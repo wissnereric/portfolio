@@ -263,13 +263,15 @@ button {
     max-width: var(--max-width);
     margin: auto;
     gap: 3rem;
+    text-align: center;
 }
 
 .sub-contact {
     padding: 20px 0;
     display: grid;
     <!--grid-template-columns: repeat(2, 1fr);-->
-     grid-template-columns: 1fr
+    grid-template-columns: 1fr;
+    text-align: center
 }
 
 .location,
@@ -364,6 +366,7 @@ footer h3 {
     /* contact */
     .contact {
         padding: 0 2rem;
+        text-align: center;
     }
     .sub-contact {
         padding: 2rem 1rem 5rem 1rem;
