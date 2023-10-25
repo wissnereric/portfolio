@@ -180,6 +180,7 @@ button {
 .description {
     /* color: var(--text-light); */
     margin-bottom: 2rem;
+    text-align: left;
 }
 
 .action__btns {
