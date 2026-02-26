@@ -136,13 +136,27 @@
       position:relative;
     }
     .card.snuffed::after{
+      content:"FIRE OUT";
+      position:absolute;
+      right:10px;
+      bottom:8px;
+      opacity:.95;
+      font-size: 10px;
+      letter-spacing: .7px;
+      padding: 2px 8px;
+      border: 1px solid rgba(255,255,255,.22);
+      border-radius: 999px;
+      background: rgba(0,0,0,.35);
+      color: rgba(255,255,255,.82);
+    }
+    /* .card.snuffed::after{
       content:" 🔥 ";
       position:absolute;
       right:10px;
       bottom:8px;
       opacity:.9;
       font-size: 14px;
-    }
+    } */
     img{
       width: 52px;
       height: 52px;
@@ -212,7 +226,7 @@
 <header>
   <h1>Survivor Contest Tracker</h1>
   <div class="sub">
-    Toggle “Snuffed” for eliminated players.  Team strength uses an external subjective ranking score per player.  Everything is static and runs in the browser.  
+    Toggle “Snuffed” for eliminated players.  Team strength uses an external subjective rating score per player.  Everything is static and runs in the browser.  
   </div>
 
   <div class="toolbar">
@@ -220,7 +234,7 @@
     <button id="nextWeekBtn">Advance Week</button>
     <button id="resetTogglesBtn" title="Clears snuffed toggles stored in your browser">Reset Snuffed (this device)</button>
     <button id="resetWeekBtn" title="Resets week counter stored in your browser">Reset Week (this device)</button>
-    <div class="pill">Scoring: <b>Remaining rank sum</b> (higher = stronger)</div>
+    <div class="pill">Scoring: <b>Remaining rating sum</b> (higher = stronger)</div>
   </div>
 </header>
 
@@ -433,7 +447,7 @@ async function render(){
       const snuffed = toggledSnuffed || hardSnuffed;
 
       const r = rankings[p.name];
-      const rankText = Number.isFinite(r) ? `Rank: ${r}` : `Rank: —`;
+      const rankText = Number.isFinite(r) ? `Rating: ${r}` : `Rating: —`;
 
       const card = document.createElement("div");
       card.className = "card" + (snuffed ? " snuffed" : "");
