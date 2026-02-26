@@ -181,8 +181,8 @@
       display:flex;
       flex-direction:column;
       align-items:flex-end;
-      gap:6px;
-      min-width: 98px;
+      gap:5px;
+      min-width: 108px;
     }
     label{
       font-size: 11px;
@@ -226,7 +226,7 @@
 <header>
   <h1>Survivor Contest Tracker</h1>
   <div class="sub">
-    Toggle “Snuffed” for eliminated players.  Team strength uses True Dork Times / Kaiser Island rakings per player.    
+    Toggle &quot;Snuffed&quot; for eliminated players. Win probability uses True Dork Times / Kaiser Island rankings (1/rank method, active players only).
   </div>
 
   <div class="toolbar">
@@ -234,7 +234,7 @@
     <button id="nextWeekBtn">Advance Week</button>
     <button id="resetTogglesBtn" title="Clears snuffed toggles stored in your browser">Reset Snuffed (this device)</button>
     <button id="resetWeekBtn" title="Resets week counter stored in your browser">Reset Week (this device)</button>
-    <div class="pill">Scoring: <b>Remaining ranking sum</b> (lower = stronger)</div>
+    <div class="pill">Scoring: <b>Win probability</b> (active players, 1/rank method)</div>
   </div>
 </header>
 
@@ -403,35 +403,75 @@ async function getRatingsAndStatus(){
 //   }
 // }
 
-function computeTeamScore(team, rankings, week, state){
-  // Score = sum of ranking values for remaining players.  
-  // A player is “snuffed” if:
-  // - eliminatedWeek is set and <= current week, OR
-  // - toggle saved in localStorage.  
+function isSnuffed(p, owner, week, state, statusMap){
+  const k = playerKey(owner, p.name);
+  const toggledSnuffed = Boolean(state[k]);
+  const OUT_STATUSES = new Set(["OUT", "MED", "QUIT"]);
+  const jsonStatus = OUT_STATUSES.has(statusMap?.[p.name]?.status);
+  const jsonElimWeek = statusMap?.[p.name]?.eliminatedWeek ?? null;
+  const hardSnuffed =
+    jsonStatus ||
+    (jsonElimWeek !== null && jsonElimWeek <= week) ||
+    (p.eliminatedWeek !== null && p.eliminatedWeek <= week);
+  return toggledSnuffed || hardSnuffed;
+}
+
+// Reciprocal score: 1/rating. Higher rating = better = higher weight.
+function reciprocal(rating){
+  return Number.isFinite(rating) && rating > 0 ? 1 / rating : 0;
+}
+
+// Raw reciprocal sum for one team (active players only).
+function computeTeamRawScore(team, rankings, week, state, statusMap){
   let sum = 0;
   for(const p of team.picks){
-    const k = playerKey(team.owner, p.name);
-    const toggledSnuffed = Boolean(state[k]);
-    const hardSnuffed = (p.eliminatedWeek !== null && p.eliminatedWeek <= week);
-    const snuffed = toggledSnuffed || hardSnuffed;
-
-    if(!snuffed){
-      const r = rankings[p.name];
-      if(Number.isFinite(r)) sum += r;
+    if(!isSnuffed(p, team.owner, week, state, statusMap)){
+      sum += reciprocal(rankings[p.name]);
     }
   }
   return sum;
 }
 
-function scoreToBarWidth(score, maxScore){
-  if(maxScore <= 0) return 0;
-  return Math.max(0, Math.min(100, (score / maxScore) * 100));
+// Win probabilities for all teams (0-100), in same order as DATA.teams.
+function computeWinProbabilities(teams, rankings, week, state, statusMap){
+  const raws = teams.map(t => computeTeamRawScore(t, rankings, week, state, statusMap));
+  const total = raws.reduce((a, b) => a + b, 0);
+  if(total <= 0) return raws.map(() => 0);
+  return raws.map(r => (r / total) * 100);
 }
 
-function scoreToColor(score, maxScore){
-  const pct = maxScore ? score / maxScore : 0;
-  if(pct >= 0.75) return "var(--good)";
-  if(pct >= 0.45) return "var(--warn)";
+// Per-player share of the global win pool as %.
+function playerWinContrib(p, owner, rankings, week, state, statusMap, globalTotal){
+  if(isSnuffed(p, owner, week, state, statusMap)) return 0;
+  if(globalTotal <= 0) return 0;
+  return (reciprocal(rankings[p.name]) / globalTotal) * 100;
+}
+
+// Highest-rated active player across all teams.
+function findTopContender(teams, rankings, week, state, statusMap){
+  let best = null;
+  let bestRating = -Infinity;
+  for(const team of teams){
+    for(const p of team.picks){
+      if(!isSnuffed(p, team.owner, week, state, statusMap)){
+        const r = rankings[p.name];
+        if(Number.isFinite(r) && r > bestRating){
+          bestRating = r;
+          best = { name: p.name, owner: team.owner };
+        }
+      }
+    }
+  }
+  return best;
+}
+
+function scoreToBarWidth(prob){
+  return Math.max(0, Math.min(100, prob));
+}
+
+function scoreToColor(prob){
+  if(prob >= 30) return "var(--good)";
+  if(prob >= 18) return "var(--warn)";
   return "var(--bad)";
 }
 
@@ -446,8 +486,9 @@ async function render(){
   //const rankings = await getRankings();
   const state = loadState();
 
-  const scores = DATA.teams.map(t => computeTeamScore(t, rankings, week, state));
-  const maxScore = Math.max(...scores, 1);
+  const probs = computeWinProbabilities(DATA.teams, rankings, week, state, statusMap);
+  const globalRawTotal = DATA.teams.reduce((sum, t) => sum + computeTeamRawScore(t, rankings, week, state, statusMap), 0);
+  const topContender = findTopContender(DATA.teams, rankings, week, state, statusMap);
 
   DATA.teams.forEach((team, idx) => {
     const col = document.createElement("section");
@@ -456,9 +497,9 @@ async function render(){
     const head = document.createElement("div");
     head.className = "colHead";
 
-    const score = scores[idx];
-    const barW = scoreToBarWidth(score, maxScore);
-    const barColor = scoreToColor(score, maxScore);
+    const prob = probs[idx];
+    const barW = scoreToBarWidth(prob);
+    const barColor = scoreToColor(prob);
 
     head.innerHTML = `
       <div class="colHeadTop">
@@ -467,8 +508,8 @@ async function render(){
           <div class="sub" style="margin-top:4px;">${DATA.seasonLabel}</div>
         </div>
         <div class="score">
-          <div>Team strength</div>
-          <strong>${score.toFixed(0)}</strong>
+          <div>Win probability</div>
+          <strong>${prob.toFixed(1)}%</strong>
           <div class="bar"><div class="fill" style="width:${barW}%; background:${barColor};"></div></div>
         </div>
       </div>
@@ -479,23 +520,14 @@ async function render(){
 
     team.picks.forEach(p => {
       const k = playerKey(team.owner, p.name);
-      const toggledSnuffed = Boolean(state[k]);
-
-      const OUT_STATUSES = new Set(["OUT", "MED", "QUIT"]);
-      const jsonStatus = OUT_STATUSES.has(statusMap?.[p.name]?.status);
+      const snuffed = isSnuffed(p, team.owner, week, state, statusMap);
       const jsonElimWeek = statusMap?.[p.name]?.eliminatedWeek ?? null;
 
-      const hardSnuffed =
-        jsonStatus ||
-        (jsonElimWeek !== null && jsonElimWeek <= week) ||
-        (p.eliminatedWeek !== null && p.eliminatedWeek <= week);
-
-      const snuffed = toggledSnuffed || hardSnuffed;
-      //const hardSnuffed = (p.eliminatedWeek !== null && p.eliminatedWeek <= week);
-      //const snuffed = toggledSnuffed || hardSnuffed;
-
       const r = rankings[p.name];
-      const rankText = Number.isFinite(r) ? `Ranking: ${r}` : `Ranking: —`;
+      const contrib = playerWinContrib(p, team.owner, rankings, week, state, statusMap, globalRawTotal);
+      const isTop = topContender && topContender.name === p.name;
+      const rankText = Number.isFinite(r) ? `Rating: ${r}` : `Rating: —`;
+      const contribText = snuffed ? `` : `${contrib.toFixed(1)}% win share`;
 
       const card = document.createElement("div");
       card.className = "card" + (snuffed ? " snuffed" : "");
@@ -507,9 +539,7 @@ async function render(){
         ? `Elim wk: ${effectiveElimWeek}`
         : (snuffed ? `Elim: toggled` : `Still in`);
 
-      // const elimText = (p.eliminatedWeek !== null)
-      //   ? `Elim wk: ${p.eliminatedWeek}`
-      //   : (snuffed ? `Elim: toggled` : `Still in`);
+
 
       card.innerHTML = `
         <img src="${p.photo}" alt="${p.name}" loading="lazy" />
@@ -518,7 +548,9 @@ async function render(){
           <div class="meta">${elimText}</div>
         </div>
         <div class="toggle">
+          ${isTop ? `<div class="rankBadge" style="border-color:var(--warn);color:var(--warn);">&#9733; Top Contender</div>` : ``}
           <div class="rankBadge">${rankText}</div>
+          ${!snuffed ? `<div class="rankBadge" style="margin-top:2px;">${contribText}</div>` : ``}
           <label title="Mark eliminated (stored in your browser)">
             <input type="checkbox" ${snuffed ? "checked" : ""} />
             Snuffed
