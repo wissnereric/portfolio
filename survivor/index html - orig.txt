@@ -1,0 +1,567 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Survivor 50 Contest Tracker</title>
+  <style>
+    :root{
+      --bg:#0b1020;
+      --panel:#121a33;
+      --panel2:#0f1730;
+      --text:#e9ecf5;
+      --muted:#aab3d1;
+      --border:rgba(255,255,255,.12);
+      --snuffed:rgba(255,255,255,.22);
+      --good:#6ee7b7;
+      --warn:#fbbf24;
+      --bad:#fb7185;
+    }
+    *{ box-sizing:border-box; }
+    body{
+      margin:0;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      background: radial-gradient(1000px 600px at 20% 0%, #182458 0%, var(--bg) 60%);
+      color: var(--text);
+    }
+    header{
+      padding: 18px 16px 10px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    h1{ margin:0 0 6px; font-size: 20px; font-weight: 750; letter-spacing:.2px; }
+    .sub{ color: var(--muted); font-size: 13px; line-height: 1.35; }
+    .toolbar{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      margin-top:12px;
+      align-items:center;
+    }
+    .pill{
+      background: rgba(255,255,255,.06);
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      padding: 8px 10px;
+      font-size: 12px;
+      color: var(--muted);
+      display:flex;
+      gap:8px;
+      align-items:center;
+    }
+    .pill b{ color: var(--text); font-weight:700; }
+    button{
+      background: rgba(255,255,255,.08);
+      color: var(--text);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 8px 10px;
+      cursor:pointer;
+      font-size: 12px;
+    }
+    button:hover{ background: rgba(255,255,255,.12); }
+    main{
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 10px 16px 22px;
+    }
+    .grid{
+      display:grid;
+      gap: 12px;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+    @media (max-width: 980px){
+      .grid{ grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
+    @media (max-width: 540px){
+      .grid{ grid-template-columns: 1fr; }
+    }
+    .col{
+      background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      overflow:hidden;
+    }
+    .colHead{
+      padding: 12px 12px 10px;
+      background: rgba(0,0,0,.18);
+      border-bottom: 1px solid var(--border);
+    }
+    .colHeadTop{
+      display:flex;
+      justify-content:space-between;
+      gap:10px;
+      align-items:flex-start;
+    }
+    .owner{
+      font-weight:800;
+      font-size: 15px;
+      margin:0;
+    }
+    .score{
+      text-align:right;
+      font-size: 12px;
+      color: var(--muted);
+      line-height:1.2;
+    }
+    .score strong{ color: var(--text); font-size: 14px; }
+    .score .bar{
+      height:6px;
+      background: rgba(255,255,255,.10);
+      border-radius: 999px;
+      margin-top:6px;
+      overflow:hidden;
+    }
+    .score .fill{ height:100%; width:0%; background: var(--good); }
+    .players{
+      padding: 10px 10px 12px;
+      display:grid;
+      gap: 10px;
+    }
+    .card{
+      display:grid;
+      grid-template-columns: 52px 1fr auto;
+      gap: 10px;
+      align-items:center;
+      padding: 10px;
+      background: rgba(0,0,0,.16);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+    }
+    .card.snuffed{
+      opacity: .55;
+      filter: grayscale(80%);
+      border-color: rgba(255,255,255,.09);
+      background: rgba(0,0,0,.12);
+      position:relative;
+    }
+    .card.snuffed::after{
+      content:"FIRE OUT";
+      position:absolute;
+      right:10px;
+      bottom:8px;
+      opacity:.95;
+      font-size: 10px;
+      letter-spacing: .7px;
+      padding: 2px 8px;
+      border: 1px solid rgba(255,255,255,.22);
+      border-radius: 999px;
+      background: rgba(0,0,0,.35);
+      color: rgba(255,255,255,.82);
+    }
+    /* .card.snuffed::after{
+      content:" 🔥 ";
+      position:absolute;
+      right:10px;
+      bottom:8px;
+      opacity:.9;
+      font-size: 14px;
+    } */
+    img{
+      width: 52px;
+      height: 52px;
+      border-radius: 12px;
+      object-fit: cover;
+      border: 1px solid rgba(255,255,255,.18);
+      background: rgba(255,255,255,.06);
+    }
+    .name{
+      font-weight: 750;
+      font-size: 13px;
+      line-height: 1.1;
+      margin:0;
+    }
+    .meta{
+      color: var(--muted);
+      font-size: 12px;
+      margin-top: 4px;
+      line-height: 1.2;
+    }
+    .toggle{
+      display:flex;
+      flex-direction:column;
+      align-items:flex-end;
+      gap:6px;
+      min-width: 98px;
+    }
+    label{
+      font-size: 11px;
+      color: var(--muted);
+      display:flex;
+      gap:6px;
+      align-items:center;
+      cursor:pointer;
+      user-select:none;
+    }
+    input[type="checkbox"]{
+      width: 15px;
+      height: 15px;
+      accent-color: var(--bad);
+    }
+    .rankBadge{
+      font-size: 11px;
+      padding: 4px 8px;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      color: var(--muted);
+      background: rgba(255,255,255,.05);
+    }
+    .footerNote{
+      color: var(--muted);
+      font-size: 12px;
+      margin-top: 14px;
+      line-height: 1.35;
+    }
+    code.inline{
+      background: rgba(255,255,255,.08);
+      padding: 2px 6px;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      font-size: 12px;
+    }
+  </style>
+</head>
+
+<body>
+<header>
+  <h1>Survivor Contest Tracker</h1>
+  <div class="sub">
+    Toggle “Snuffed” for eliminated players.  Team strength uses True Dork Times / Kaiser Island rankings per player.    
+  </div>
+
+  <div class="toolbar">
+    <div class="pill">Week: <b id="weekLabel">1</b></div>
+    <button id="nextWeekBtn">Advance Week</button>
+    <button id="resetTogglesBtn" title="Clears snuffed toggles stored in your browser">Reset Snuffed (this device)</button>
+    <button id="resetWeekBtn" title="Resets week counter stored in your browser">Reset Week (this device)</button>
+    <div class="pill">Scoring: <b>Remaining ranking sum</b> (lower = stronger)</div>
+  </div>
+</header>
+
+<main>
+  <div id="grid" class="grid"></div>
+
+  <!-- <div class="footerNote">
+    Update mechanism: edit the <code class="inline">DATA.teams</code> list (names, headshot URLs, and ranks) or paste new ranks into <code class="inline">DATA.rankings</code>.  
+    If you want rankings to come from a URL (Google Sheet export, JSON file, etc.), set <code class="inline">DATA.rankingsUrl</code>.  
+  </div> -->
+</main>
+
+<script>
+/**
+ * 1) EDIT THIS SECTION WEEKLY.  
+ * - photo: use direct image URLs (or store images in your repo and reference /images/name.jpg).  
+ * - rankings: subjective “strength” score; higher = better.  
+ * - You can keep snuffed state as a browser toggle (localStorage) OR hard-code eliminatedWeek for permanence.  
+ */
+const DATA = {
+  seasonLabel: "Survivor 50",
+  // Optional: If set, rankings are fetched from this URL as JSON: { "Player Name": 92, "Another Player": 75, ... }
+  rankingsUrl: "./ratings.json",
+
+  rankings: {
+    "Charlie Davis": 7.4,
+    "Aubry Bracco": 7.4,
+    "Rick Devens": 6.7,
+    "Cirie Fields": 6.3,
+    "Stephenie LaGrossa Kendrick": 5.4,
+    "Joe Hunter": 5.4,
+    'Benjamin "Coach" Wade': 4.8,
+    "Ozzy Lusth": 4.8,
+    "Colby Donaldson": 4.8,
+    "Jonathan Young": 4.8,
+    "Rizo Velovic": 4.3,
+    "Kamilla Karthigesu": 4.3,
+    "Genevieve Mushaluk": 3.8,
+    "Christian Hubicki": 3.8,
+    "Angelina Keeley": 3.2,
+    "Chrissy Hofbeck": 3.2,
+    "Jenna Lewis-Dougherty": 3.2,
+    "Tiffany Ervin": 2.8,
+    "Emily Flippen": 2.8,
+    "Savannah Louie": 2.8,
+    "Dee Valladares": 2.4,
+    "Kyle Fraser": 2.4,
+    "Mike White": 1.0,
+    "Q Burdette": 1.0
+  },
+
+  teams: [
+  {
+    owner: "Gina",
+    picks: [
+      { name: "Ozzy Lusth", photo: "./img/survivor50/88857583007-survivor-50-ozzy-lusth-s-1.webp", eliminatedWeek: null },
+      { name: "Mike White", photo: "./img/survivor50/88857589007-survivor-50-mike-white-s-1.webp", eliminatedWeek: null },
+      { name: "Savannah Louie", photo: "./img/survivor50/88857596007-survivor-50-savannah-louie-s-1.webp", eliminatedWeek: null },
+      { name: "Rizo Velovic", photo: "./img/survivor50/88857597007-survivor-50-rizo-velovic-s-1.webp", eliminatedWeek: null },
+      { name: "Jenna Lewis-Dougherty", photo: "./img/survivor50/88857578007-survivor-50-jenna-lewis-dougherty-s-1.webp", eliminatedWeek: 1 },
+      { name: "Angelina Keeley", photo: "./img/survivor50/88857590007-survivor-50-angelina-keeley-s-1.webp", eliminatedWeek: null }
+    ]
+  },
+  {
+    owner: "Erin",
+    picks: [
+      { name: "Colby Donaldson", photo: "./img/survivor50/88857581007-survivor-50-colby-donaldson-s-1.webp", eliminatedWeek: null },
+      { name: "Kamilla Karthigesu", photo: "./img/survivor50/88857577007-survivor-50-kamilla-karthigesu-s-1.webp", eliminatedWeek: null },
+      { name: "Dee Valladares", photo: "./img/survivor50/88857575007-survivor-50-dee-valladares-s-1-c.webp", eliminatedWeek: null },
+      { name: "Jonathan Young", photo: "./img/survivor50/88857588007-survivor-50-jonathan-young-s-1.webp", eliminatedWeek: null },
+      { name: "Chrissy Hofbeck", photo: "./img/survivor50/88857579007-survivor-50-chrissy-hofbeck-s-1.webp", eliminatedWeek: null },
+      { name: "Tiffany Ervin", photo: "./img/survivor50/88857599007-survivor-50-tiffany-ervin-s-1.webp", eliminatedWeek: null }
+    ]
+  },
+  {
+    owner: "Eric",
+    picks: [
+      { name: "Aubry Bracco", photo: "./img/survivor50/88857587007-survivor-50-aubry-bracco-s-1.webp", eliminatedWeek: null },
+      { name: "Charlie Davis", photo: "./img/survivor50/88857585007-survivor-50-charlie-davis-s-1.webp", eliminatedWeek: null },
+      { name: "Genevieve Mushaluk", photo: "./img/survivor50/88857593007-survivor-50-genevieve-mushaluk-s-1.webp", eliminatedWeek: null },
+      { name: "Rick Devens", photo: "./img/survivor50/88857580007-survivor-50-rick-devens-s-1.webp", eliminatedWeek: null },
+      { name: "Emily Flippen", photo: "./img/survivor50/88857584007-survivor-50-emily-flippen-s-1.webp", eliminatedWeek: null },
+      { name: "Christian Hubicki", photo: "./img/survivor50/88857592007-survivor-50-christian-hubicki-s-1.webp", eliminatedWeek: null }
+    ]
+  },
+  {
+    owner: "Mike",
+    picks: [
+      { name: 'Benjamin "Coach" Wade', photo: "./img/survivor50/88857586007-survivor-50-benjamin-coach-wade-s-1.webp", eliminatedWeek: null },
+      { name: "Joe Hunter", photo: "./img/survivor50/88857576007-survivor-50-joe-hunter-s-1.webp", eliminatedWeek: null },
+      { name: "Stephenie LaGrossa Kendrick", photo: "./img/survivor50/88857598007-survivor-50-stephenie-la-grossa-kendrick-s-1.webp", eliminatedWeek: null },
+      { name: "Cirie Fields", photo: "./img/survivor50/88857591007-survivor-50-cirie-fields-s-1.webp", eliminatedWeek: null },
+      { name: "Kyle Fraser", photo: "./img/survivor50/88857594007-survivor-50-kyle-fraser-s-1-2.webp", eliminatedWeek: 1 },
+      { name: "Q Burdette", photo: "./img/survivor50/88857582007-survivor-50-q-burdette-s-1.webp", eliminatedWeek: null }
+    ]
+  }
+]
+};
+
+// ------------------ App logic (no edits needed) ------------------
+const LS_KEY = "survivor_contest_state_v1";
+const LS_WEEK = "survivor_contest_week_v1";
+
+function loadState(){
+  try { return JSON.parse(localStorage.getItem(LS_KEY) || "{}"); } catch { return {}; }
+}
+function saveState(state){
+  localStorage.setItem(LS_KEY, JSON.stringify(state));
+}
+function getWeek(){
+  return Number(localStorage.getItem(LS_WEEK) || "1");
+}
+function setWeek(w){
+  localStorage.setItem(LS_WEEK, String(w));
+  document.getElementById("weekLabel").textContent = String(w);
+}
+function playerKey(owner, playerName){
+  return `${owner}::${playerName}`;
+}
+
+async function getRatingsAndStatus(){
+  // Returns: { ratings: {name: number}, status: {name: {status, eliminatedWeek}} }
+  if(!DATA.rankingsUrl){
+    return { ratings: (DATA.rankings || {}), status: {} };
+  }
+
+  try{
+    const res = await fetch(DATA.rankingsUrl, { cache: "no-store" });
+    if(!res.ok) throw new Error("Fetch failed");
+
+    const json = await res.json();
+    const players = json?.players || {};
+
+    const ratings = {};
+    const status = {};
+
+    for(const [name, obj] of Object.entries(players)){
+      const r = Number(obj?.rating);
+      if(Number.isFinite(r)) ratings[name] = r;
+
+      const s = String(obj?.status || "").toUpperCase();
+      const ew = (obj?.eliminatedWeek === null || obj?.eliminatedWeek === undefined)
+        ? null
+        : Number(obj.eliminatedWeek);
+
+      status[name] = {
+        status: s || "IN",
+        eliminatedWeek: Number.isFinite(ew) ? ew : null
+      };
+    }
+
+    return { ratings, status };
+  }catch{
+    return { ratings: (DATA.rankings || {}), status: {} };
+  }
+}
+// async function getRankings(){
+//   if(!DATA.rankingsUrl) return DATA.rankings || {};
+//   try{
+//     const res = await fetch(DATA.rankingsUrl, { cache: "no-store" });
+//     if(!res.ok) throw new Error("Fetch failed");
+//     const json = await res.json();
+//     return json || {};
+//   }catch{
+//     return DATA.rankings || {};
+//   }
+// }
+
+function computeTeamScore(team, rankings, week, state){
+  // Score = sum of ranking values for remaining players.  
+  // A player is “snuffed” if:
+  // - eliminatedWeek is set and <= current week, OR
+  // - toggle saved in localStorage.  
+  let sum = 0;
+  for(const p of team.picks){
+    const k = playerKey(team.owner, p.name);
+    const toggledSnuffed = Boolean(state[k]);
+    const hardSnuffed = (p.eliminatedWeek !== null && p.eliminatedWeek <= week);
+    const snuffed = toggledSnuffed || hardSnuffed;
+
+    if(!snuffed){
+      const r = rankings[p.name];
+      if(Number.isFinite(r)) sum += r;
+    }
+  }
+  return sum;
+}
+
+function scoreToBarWidth(score, maxScore){
+  if(maxScore <= 0) return 0;
+  return Math.max(0, Math.min(100, (score / maxScore) * 100));
+}
+
+function scoreToColor(score, maxScore){
+  const pct = maxScore ? score / maxScore : 0;
+  if(pct >= 0.75) return "var(--good)";
+  if(pct >= 0.45) return "var(--warn)";
+  return "var(--bad)";
+}
+
+async function render(){
+  const grid = document.getElementById("grid");
+  grid.innerHTML = "";
+
+  const week = getWeek();
+  setWeek(week);
+
+  const { ratings: rankings, status: statusMap } = await getRatingsAndStatus();
+  //const rankings = await getRankings();
+  const state = loadState();
+
+  const scores = DATA.teams.map(t => computeTeamScore(t, rankings, week, state));
+  const maxScore = Math.max(...scores, 1);
+
+  DATA.teams.forEach((team, idx) => {
+    const col = document.createElement("section");
+    col.className = "col";
+
+    const head = document.createElement("div");
+    head.className = "colHead";
+
+    const score = scores[idx];
+    const barW = scoreToBarWidth(score, maxScore);
+    const barColor = scoreToColor(score, maxScore);
+
+    head.innerHTML = `
+      <div class="colHeadTop">
+        <div>
+          <div class="owner">${team.owner}</div>
+          <div class="sub" style="margin-top:4px;">${DATA.seasonLabel}</div>
+        </div>
+        <div class="score">
+          <div>Team strength</div>
+          <strong>${score.toFixed(0)}</strong>
+          <div class="bar"><div class="fill" style="width:${barW}%; background:${barColor};"></div></div>
+        </div>
+      </div>
+    `;
+
+    const list = document.createElement("div");
+    list.className = "players";
+
+    team.picks.forEach(p => {
+      const k = playerKey(team.owner, p.name);
+      const toggledSnuffed = Boolean(state[k]);
+
+      const OUT_STATUSES = new Set(["OUT", "MED", "QUIT"]);
+      const jsonStatus = OUT_STATUSES.has(statusMap?.[p.name]?.status);
+      const jsonElimWeek = statusMap?.[p.name]?.eliminatedWeek ?? null;
+
+      const hardSnuffed =
+        jsonStatus ||
+        (jsonElimWeek !== null && jsonElimWeek <= week) ||
+        (p.eliminatedWeek !== null && p.eliminatedWeek <= week);
+
+      const snuffed = toggledSnuffed || hardSnuffed;
+      //const hardSnuffed = (p.eliminatedWeek !== null && p.eliminatedWeek <= week);
+      //const snuffed = toggledSnuffed || hardSnuffed;
+
+      const r = rankings[p.name];
+      const rankText = Number.isFinite(r) ? `Ranking: ${r}` : `Ranking: —`;
+
+      const card = document.createElement("div");
+      card.className = "card" + (snuffed ? " snuffed" : "");
+
+      const effectiveElimWeek =
+        (jsonElimWeek !== null ? jsonElimWeek : p.eliminatedWeek);
+
+      const elimText = (effectiveElimWeek !== null)
+        ? `Elim wk: ${effectiveElimWeek}`
+        : (snuffed ? `Elim: toggled` : `Still in`);
+
+      // const elimText = (p.eliminatedWeek !== null)
+      //   ? `Elim wk: ${p.eliminatedWeek}`
+      //   : (snuffed ? `Elim: toggled` : `Still in`);
+
+      card.innerHTML = `
+        <img src="${p.photo}" alt="${p.name}" loading="lazy" />
+        <div>
+          <p class="name">${p.name}</p>
+          <div class="meta">${elimText}</div>
+        </div>
+        <div class="toggle">
+          <div class="rankBadge">${rankText}</div>
+          <label title="Mark eliminated (stored in your browser)">
+            <input type="checkbox" ${snuffed ? "checked" : ""} />
+            Snuffed
+          </label>
+        </div>
+      `;
+
+      const checkbox = card.querySelector("input[type='checkbox']");
+      checkbox.addEventListener("change", () => {
+        // If eliminatedWeek is used, you can still override via toggle.  
+        // Toggle state persists per device/browser.  
+        const st = loadState();
+        st[k] = checkbox.checked ? 1 : 0;
+        saveState(st);
+        render();
+      });
+
+      list.appendChild(card);
+    });
+
+    col.appendChild(head);
+    col.appendChild(list);
+    grid.appendChild(col);
+  });
+}
+
+document.getElementById("nextWeekBtn").addEventListener("click", () => {
+  setWeek(getWeek() + 1);
+  render();
+});
+
+document.getElementById("resetTogglesBtn").addEventListener("click", () => {
+  localStorage.removeItem(LS_KEY);
+  render();
+});
+
+document.getElementById("resetWeekBtn").addEventListener("click", () => {
+  localStorage.removeItem(LS_WEEK);
+  render();
+});
+
+// Initial render.  
+render();
+</script>
+</body>
+</html>
