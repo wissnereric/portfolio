@@ -226,7 +226,7 @@
 <header>
   <h1>Survivor Contest Tracker</h1>
   <div class="sub">
-    Toggle “Snuffed” for eliminated players.  Team strength uses Polymarket rating score per player.    
+    Toggle “Snuffed” for eliminated players.  Team strength uses True Dork Times / Kaiser Island rakings per player.    
   </div>
 
   <div class="toolbar">
@@ -234,7 +234,7 @@
     <button id="nextWeekBtn">Advance Week</button>
     <button id="resetTogglesBtn" title="Clears snuffed toggles stored in your browser">Reset Snuffed (this device)</button>
     <button id="resetWeekBtn" title="Resets week counter stored in your browser">Reset Week (this device)</button>
-    <div class="pill">Scoring: <b>Remaining rating sum</b> (higher = stronger)</div>
+    <div class="pill">Scoring: <b>Remaining ranking sum</b> (lower = stronger)</div>
   </div>
 </header>
 
@@ -495,7 +495,7 @@ async function render(){
       //const snuffed = toggledSnuffed || hardSnuffed;
 
       const r = rankings[p.name];
-      const rankText = Number.isFinite(r) ? `Rating: ${r}` : `Rating: —`;
+      const rankText = Number.isFinite(r) ? `Ranking: ${r}` : `Ranking: —`;
 
       const card = document.createElement("div");
       card.className = "card" + (snuffed ? " snuffed" : "");
