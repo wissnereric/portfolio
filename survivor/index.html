@@ -181,7 +181,7 @@
       display:flex;
       flex-direction:column;
       align-items:flex-end;
-      gap:5px;
+      gap:6px;
       min-width: 108px;
     }
     label{
@@ -226,7 +226,7 @@
 <header>
   <h1>Survivor Contest Tracker</h1>
   <div class="sub">
-    Toggle &quot;Snuffed&quot; for eliminated players. Win probability uses True Dork Times / Kaiser Island rankings (1/rank method, active players only).
+    Toggle “Snuffed” for eliminated players. Win probability uses True Dork Times / Kaiser Island rankings (1/rank method, active players only).
   </div>
 
   <div class="toolbar">
@@ -259,79 +259,79 @@ const DATA = {
   // Optional: If set, rankings are fetched from this URL as JSON: { "Player Name": 92, "Another Player": 75, ... }
   rankingsUrl: "./ratings.json",
 
-  rankings: {
-    "Charlie Davis": 7.4,
-    "Aubry Bracco": 7.4,
-    "Rick Devens": 6.7,
-    "Cirie Fields": 6.3,
-    "Stephenie LaGrossa Kendrick": 5.4,
-    "Joe Hunter": 5.4,
-    'Benjamin "Coach" Wade': 4.8,
-    "Ozzy Lusth": 4.8,
-    "Colby Donaldson": 4.8,
-    "Jonathan Young": 4.8,
-    "Rizo Velovic": 4.3,
-    "Kamilla Karthigesu": 4.3,
-    "Genevieve Mushaluk": 3.8,
-    "Christian Hubicki": 3.8,
-    "Angelina Keeley": 3.2,
-    "Chrissy Hofbeck": 3.2,
-    "Jenna Lewis-Dougherty": 3.2,
-    "Tiffany Ervin": 2.8,
-    "Emily Flippen": 2.8,
-    "Savannah Louie": 2.8,
-    "Dee Valladares": 2.4,
-    "Kyle Fraser": 2.4,
-    "Mike White": 1.0,
-    "Q Burdette": 1.0
-  },
+  // rankings: {
+  //   "Charlie Davis": 7.4,
+  //   "Aubry Bracco": 7.4,
+  //   "Rick Devens": 6.7,
+  //   "Cirie Fields": 6.3,
+  //   "Stephenie LaGrossa Kendrick": 5.4,
+  //   "Joe Hunter": 5.4,
+  //   'Benjamin "Coach" Wade': 4.8,
+  //   "Ozzy Lusth": 4.8,
+  //   "Colby Donaldson": 4.8,
+  //   "Jonathan Young": 4.8,
+  //   "Rizo Velovic": 4.3,
+  //   "Kamilla Karthigesu": 4.3,
+  //   "Genevieve Mushaluk": 3.8,
+  //   "Christian Hubicki": 3.8,
+  //   "Angelina Keeley": 3.2,
+  //   "Chrissy Hofbeck": 3.2,
+  //   "Jenna Lewis-Dougherty": 3.2,
+  //   "Tiffany Ervin": 2.8,
+  //   "Emily Flippen": 2.8,
+  //   "Savannah Louie": 2.8,
+  //   "Dee Valladares": 2.4,
+  //   "Kyle Fraser": 2.4,
+  //   "Mike White": 1.0,
+  //   "Q Burdette": 1.0
+  // },
 
-  teams: [
-  {
-    owner: "Gina",
-    picks: [
-      { name: "Ozzy Lusth", photo: "./img/survivor50/88857583007-survivor-50-ozzy-lusth-s-1.webp", eliminatedWeek: null },
-      { name: "Mike White", photo: "./img/survivor50/88857589007-survivor-50-mike-white-s-1.webp", eliminatedWeek: null },
-      { name: "Savannah Louie", photo: "./img/survivor50/88857596007-survivor-50-savannah-louie-s-1.webp", eliminatedWeek: null },
-      { name: "Rizo Velovic", photo: "./img/survivor50/88857597007-survivor-50-rizo-velovic-s-1.webp", eliminatedWeek: null },
-      { name: "Jenna Lewis-Dougherty", photo: "./img/survivor50/88857578007-survivor-50-jenna-lewis-dougherty-s-1.webp", eliminatedWeek: 1 },
-      { name: "Angelina Keeley", photo: "./img/survivor50/88857590007-survivor-50-angelina-keeley-s-1.webp", eliminatedWeek: null }
-    ]
-  },
-  {
-    owner: "Erin",
-    picks: [
-      { name: "Colby Donaldson", photo: "./img/survivor50/88857581007-survivor-50-colby-donaldson-s-1.webp", eliminatedWeek: null },
-      { name: "Kamilla Karthigesu", photo: "./img/survivor50/88857577007-survivor-50-kamilla-karthigesu-s-1.webp", eliminatedWeek: null },
-      { name: "Dee Valladares", photo: "./img/survivor50/88857575007-survivor-50-dee-valladares-s-1-c.webp", eliminatedWeek: null },
-      { name: "Jonathan Young", photo: "./img/survivor50/88857588007-survivor-50-jonathan-young-s-1.webp", eliminatedWeek: null },
-      { name: "Chrissy Hofbeck", photo: "./img/survivor50/88857579007-survivor-50-chrissy-hofbeck-s-1.webp", eliminatedWeek: null },
-      { name: "Tiffany Ervin", photo: "./img/survivor50/88857599007-survivor-50-tiffany-ervin-s-1.webp", eliminatedWeek: null }
-    ]
-  },
-  {
-    owner: "Eric",
-    picks: [
-      { name: "Aubry Bracco", photo: "./img/survivor50/88857587007-survivor-50-aubry-bracco-s-1.webp", eliminatedWeek: null },
-      { name: "Charlie Davis", photo: "./img/survivor50/88857585007-survivor-50-charlie-davis-s-1.webp", eliminatedWeek: null },
-      { name: "Genevieve Mushaluk", photo: "./img/survivor50/88857593007-survivor-50-genevieve-mushaluk-s-1.webp", eliminatedWeek: null },
-      { name: "Rick Devens", photo: "./img/survivor50/88857580007-survivor-50-rick-devens-s-1.webp", eliminatedWeek: null },
-      { name: "Emily Flippen", photo: "./img/survivor50/88857584007-survivor-50-emily-flippen-s-1.webp", eliminatedWeek: null },
-      { name: "Christian Hubicki", photo: "./img/survivor50/88857592007-survivor-50-christian-hubicki-s-1.webp", eliminatedWeek: null }
-    ]
-  },
-  {
-    owner: "Mike",
-    picks: [
-      { name: 'Benjamin "Coach" Wade', photo: "./img/survivor50/88857586007-survivor-50-benjamin-coach-wade-s-1.webp", eliminatedWeek: null },
-      { name: "Joe Hunter", photo: "./img/survivor50/88857576007-survivor-50-joe-hunter-s-1.webp", eliminatedWeek: null },
-      { name: "Stephenie LaGrossa Kendrick", photo: "./img/survivor50/88857598007-survivor-50-stephenie-la-grossa-kendrick-s-1.webp", eliminatedWeek: null },
-      { name: "Cirie Fields", photo: "./img/survivor50/88857591007-survivor-50-cirie-fields-s-1.webp", eliminatedWeek: null },
-      { name: "Kyle Fraser", photo: "./img/survivor50/88857594007-survivor-50-kyle-fraser-s-1-2.webp", eliminatedWeek: 1 },
-      { name: "Q Burdette", photo: "./img/survivor50/88857582007-survivor-50-q-burdette-s-1.webp", eliminatedWeek: null }
-    ]
-  }
-]
+//   teams: [
+//   {
+//     owner: "Gina",
+//     picks: [
+//       { name: "Ozzy Lusth", photo: "./img/survivor50/88857583007-survivor-50-ozzy-lusth-s-1.webp", eliminatedWeek: null },
+//       { name: "Mike White", photo: "./img/survivor50/88857589007-survivor-50-mike-white-s-1.webp", eliminatedWeek: null },
+//       { name: "Savannah Louie", photo: "./img/survivor50/88857596007-survivor-50-savannah-louie-s-1.webp", eliminatedWeek: null },
+//       { name: "Rizo Velovic", photo: "./img/survivor50/88857597007-survivor-50-rizo-velovic-s-1.webp", eliminatedWeek: null },
+//       { name: "Jenna Lewis-Dougherty", photo: "./img/survivor50/88857578007-survivor-50-jenna-lewis-dougherty-s-1.webp", eliminatedWeek: 1 },
+//       { name: "Angelina Keeley", photo: "./img/survivor50/88857590007-survivor-50-angelina-keeley-s-1.webp", eliminatedWeek: null }
+//     ]
+//   },
+//   {
+//     owner: "Erin",
+//     picks: [
+//       { name: "Colby Donaldson", photo: "./img/survivor50/88857581007-survivor-50-colby-donaldson-s-1.webp", eliminatedWeek: null },
+//       { name: "Kamilla Karthigesu", photo: "./img/survivor50/88857577007-survivor-50-kamilla-karthigesu-s-1.webp", eliminatedWeek: null },
+//       { name: "Dee Valladares", photo: "./img/survivor50/88857575007-survivor-50-dee-valladares-s-1-c.webp", eliminatedWeek: null },
+//       { name: "Jonathan Young", photo: "./img/survivor50/88857588007-survivor-50-jonathan-young-s-1.webp", eliminatedWeek: null },
+//       { name: "Chrissy Hofbeck", photo: "./img/survivor50/88857579007-survivor-50-chrissy-hofbeck-s-1.webp", eliminatedWeek: null },
+//       { name: "Tiffany Ervin", photo: "./img/survivor50/88857599007-survivor-50-tiffany-ervin-s-1.webp", eliminatedWeek: null }
+//     ]
+//   },
+//   {
+//     owner: "Eric",
+//     picks: [
+//       { name: "Aubry Bracco", photo: "./img/survivor50/88857587007-survivor-50-aubry-bracco-s-1.webp", eliminatedWeek: null },
+//       { name: "Charlie Davis", photo: "./img/survivor50/88857585007-survivor-50-charlie-davis-s-1.webp", eliminatedWeek: null },
+//       { name: "Genevieve Mushaluk", photo: "./img/survivor50/88857593007-survivor-50-genevieve-mushaluk-s-1.webp", eliminatedWeek: null },
+//       { name: "Rick Devens", photo: "./img/survivor50/88857580007-survivor-50-rick-devens-s-1.webp", eliminatedWeek: null },
+//       { name: "Emily Flippen", photo: "./img/survivor50/88857584007-survivor-50-emily-flippen-s-1.webp", eliminatedWeek: null },
+//       { name: "Christian Hubicki", photo: "./img/survivor50/88857592007-survivor-50-christian-hubicki-s-1.webp", eliminatedWeek: null }
+//     ]
+//   },
+//   {
+//     owner: "Mike",
+//     picks: [
+//       { name: 'Benjamin "Coach" Wade', photo: "./img/survivor50/88857586007-survivor-50-benjamin-coach-wade-s-1.webp", eliminatedWeek: null },
+//       { name: "Joe Hunter", photo: "./img/survivor50/88857576007-survivor-50-joe-hunter-s-1.webp", eliminatedWeek: null },
+//       { name: "Stephenie LaGrossa Kendrick", photo: "./img/survivor50/88857598007-survivor-50-stephenie-la-grossa-kendrick-s-1.webp", eliminatedWeek: null },
+//       { name: "Cirie Fields", photo: "./img/survivor50/88857591007-survivor-50-cirie-fields-s-1.webp", eliminatedWeek: null },
+//       { name: "Kyle Fraser", photo: "./img/survivor50/88857594007-survivor-50-kyle-fraser-s-1-2.webp", eliminatedWeek: 1 },
+//       { name: "Q Burdette", photo: "./img/survivor50/88857582007-survivor-50-q-burdette-s-1.webp", eliminatedWeek: null }
+//     ]
+//   }
+// ]
 };
 
 // ------------------ App logic (no edits needed) ------------------
@@ -416,9 +416,10 @@ function isSnuffed(p, owner, week, state, statusMap){
   return toggledSnuffed || hardSnuffed;
 }
 
-// Reciprocal score: 1/rating. Higher rating = better = higher weight.
-function reciprocal(rating){
-  return Number.isFinite(rating) && rating > 0 ? 1 / rating : 0;
+// ratings.json uses rank numbers: lower = better (rank 1 is the top player).
+// Reciprocal 1/rank gives rank-1 the most weight.
+function reciprocal(rank){
+  return Number.isFinite(rank) && rank > 0 ? 1 / rank : 0;
 }
 
 // Raw reciprocal sum for one team (active players only).
@@ -432,7 +433,7 @@ function computeTeamRawScore(team, rankings, week, state, statusMap){
   return sum;
 }
 
-// Win probabilities for all teams (0-100), in same order as DATA.teams.
+// Win probabilities for all teams (0-100), same order as DATA.teams.
 function computeWinProbabilities(teams, rankings, week, state, statusMap){
   const raws = teams.map(t => computeTeamRawScore(t, rankings, week, state, statusMap));
   const total = raws.reduce((a, b) => a + b, 0);
@@ -447,16 +448,17 @@ function playerWinContrib(p, owner, rankings, week, state, statusMap, globalTota
   return (reciprocal(rankings[p.name]) / globalTotal) * 100;
 }
 
-// Highest-rated active player across all teams.
+// Lowest-ranked (best) active player across all teams.
+// Lower rank number = better, so we find the MINIMUM.
 function findTopContender(teams, rankings, week, state, statusMap){
   let best = null;
-  let bestRating = -Infinity;
+  let bestRank = Infinity;
   for(const team of teams){
     for(const p of team.picks){
       if(!isSnuffed(p, team.owner, week, state, statusMap)){
         const r = rankings[p.name];
-        if(Number.isFinite(r) && r > bestRating){
-          bestRating = r;
+        if(Number.isFinite(r) && r < bestRank){
+          bestRank = r;
           best = { name: p.name, owner: team.owner };
         }
       }
@@ -526,8 +528,8 @@ async function render(){
       const r = rankings[p.name];
       const contrib = playerWinContrib(p, team.owner, rankings, week, state, statusMap, globalRawTotal);
       const isTop = topContender && topContender.name === p.name;
-      const rankText = Number.isFinite(r) ? `Rating: ${r}` : `Rating: —`;
-      const contribText = snuffed ? `` : `${contrib.toFixed(1)}% win share`;
+      const rankText = Number.isFinite(r) ? `Rank: ${r}` : `Rank: —`;
+      const contribText = `${contrib.toFixed(1)}% win share`;
 
       const card = document.createElement("div");
       card.className = "card" + (snuffed ? " snuffed" : "");
@@ -538,8 +540,6 @@ async function render(){
       const elimText = (effectiveElimWeek !== null)
         ? `Elim wk: ${effectiveElimWeek}`
         : (snuffed ? `Elim: toggled` : `Still in`);
-
-
 
       card.innerHTML = `
         <img src="${p.photo}" alt="${p.name}" loading="lazy" />
