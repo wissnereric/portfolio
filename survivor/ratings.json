@@ -1,0 +1,30 @@
+{
+  "updated": "2026-02-26",
+  "source": "Polymarket",
+  "players": {
+    "Dee Valladares": { "rating": 6.2, "status": "IN", "eliminatedWeek": null },
+    "Jenna Lewis-Dougherty": { "rating": 0.0, "status": "OUT", "eliminatedWeek": 1 },
+    "Kyle Fraser": { "rating": 0.0, "status": "MED", "eliminatedWeek": 1 },
+    "Ozzy Lusth": { "rating": 4.8, "status": "IN", "eliminatedWeek": null },
+    "Mike White": { "rating": 1.0, "status": "IN", "eliminatedWeek": null },
+    "Savannah Louie": { "rating": 2.8, "status": "IN", "eliminatedWeek": null },
+    "Rizo Velovic": { "rating": 4.3, "status": "IN", "eliminatedWeek": null },
+    "Angelina Keeley": { "rating": 3.2, "status": "IN", "eliminatedWeek": null },
+    "Colby Donaldson": { "rating": 4.8, "status": "IN", "eliminatedWeek": null },
+    "Kamilla Karthigesu": { "rating": 4.3, "status": "IN", "eliminatedWeek": null },
+    "Jonathan Young": { "rating": 4.8, "status": "IN", "eliminatedWeek": null },
+    "Chrissy Hofbeck": { "rating": 3.2, "status": "IN", "eliminatedWeek": null },
+    "Tiffany Ervin": { "rating": 2.8, "status": "IN", "eliminatedWeek": null },
+    "Aubry Bracco": { "rating": 7.4, "status": "IN", "eliminatedWeek": null },
+    "Charlie Davis": { "rating": 7.4, "status": "IN", "eliminatedWeek": null },
+    "Genevieve Mushaluk": { "rating": 3.8, "status": "IN", "eliminatedWeek": null },
+    "Rick Devens": { "rating": 6.7, "status": "IN", "eliminatedWeek": null },
+    "Emily Flippen": { "rating": 2.8, "status": "IN", "eliminatedWeek": null },
+    "Christian Hubicki": { "rating": 3.8, "status": "IN", "eliminatedWeek": null },
+    "Benjamin \"Coach\" Wade": { "rating": 4.8, "status": "IN", "eliminatedWeek": null },
+    "Joe Hunter": { "rating": 5.4, "status": "IN", "eliminatedWeek": null },
+    "Stephenie LaGrossa Kendrick": { "rating": 5.4, "status": "IN", "eliminatedWeek": null },
+    "Cirie Fields": { "rating": 6.3, "status": "IN", "eliminatedWeek": null },
+    "Q Burdette": { "rating": 1.0, "status": "IN", "eliminatedWeek": null }
+  }
+}

@@ -257,7 +257,7 @@
 const DATA = {
   seasonLabel: "Survivor 50",
   // Optional: If set, rankings are fetched from this URL as JSON: { "Player Name": 92, "Another Player": 75, ... }
-  rankingsUrl: "",
+  rankingsUrl: "./ratings.json",
 
   rankings: {
     "Charlie Davis": 7.4,
@@ -355,17 +355,53 @@ function playerKey(owner, playerName){
   return `${owner}::${playerName}`;
 }
 
-async function getRankings(){
-  if(!DATA.rankingsUrl) return DATA.rankings || {};
+async function getRatingsAndStatus(){
+  // Returns: { ratings: {name: number}, status: {name: {status, eliminatedWeek}} }
+  if(!DATA.rankingsUrl){
+    return { ratings: (DATA.rankings || {}), status: {} };
+  }
+
   try{
     const res = await fetch(DATA.rankingsUrl, { cache: "no-store" });
     if(!res.ok) throw new Error("Fetch failed");
+
     const json = await res.json();
-    return json || {};
+    const players = json?.players || {};
+
+    const ratings = {};
+    const status = {};
+
+    for(const [name, obj] of Object.entries(players)){
+      const r = Number(obj?.rating);
+      if(Number.isFinite(r)) ratings[name] = r;
+
+      const s = String(obj?.status || "").toUpperCase();
+      const ew = (obj?.eliminatedWeek === null || obj?.eliminatedWeek === undefined)
+        ? null
+        : Number(obj.eliminatedWeek);
+
+      status[name] = {
+        status: s || "IN",
+        eliminatedWeek: Number.isFinite(ew) ? ew : null
+      };
+    }
+
+    return { ratings, status };
   }catch{
-    return DATA.rankings || {};
+    return { ratings: (DATA.rankings || {}), status: {} };
   }
 }
+// async function getRankings(){
+//   if(!DATA.rankingsUrl) return DATA.rankings || {};
+//   try{
+//     const res = await fetch(DATA.rankingsUrl, { cache: "no-store" });
+//     if(!res.ok) throw new Error("Fetch failed");
+//     const json = await res.json();
+//     return json || {};
+//   }catch{
+//     return DATA.rankings || {};
+//   }
+// }
 
 function computeTeamScore(team, rankings, week, state){
   // Score = sum of ranking values for remaining players.  
@@ -406,7 +442,8 @@ async function render(){
   const week = getWeek();
   setWeek(week);
 
-  const rankings = await getRankings();
+  const { ratings: rankings, status: statusMap } = await getRatingsAndStatus();
+  //const rankings = await getRankings();
   const state = loadState();
 
   const scores = DATA.teams.map(t => computeTeamScore(t, rankings, week, state));
@@ -443,8 +480,19 @@ async function render(){
     team.picks.forEach(p => {
       const k = playerKey(team.owner, p.name);
       const toggledSnuffed = Boolean(state[k]);
-      const hardSnuffed = (p.eliminatedWeek !== null && p.eliminatedWeek <= week);
+
+      const OUT_STATUSES = new Set(["OUT", "MED", "QUIT"]);
+      const jsonStatus = OUT_STATUSES.has(statusMap?.[p.name]?.status);
+      const jsonElimWeek = statusMap?.[p.name]?.eliminatedWeek ?? null;
+
+      const hardSnuffed =
+        jsonStatus ||
+        (jsonElimWeek !== null && jsonElimWeek <= week) ||
+        (p.eliminatedWeek !== null && p.eliminatedWeek <= week);
+
       const snuffed = toggledSnuffed || hardSnuffed;
+      //const hardSnuffed = (p.eliminatedWeek !== null && p.eliminatedWeek <= week);
+      //const snuffed = toggledSnuffed || hardSnuffed;
 
       const r = rankings[p.name];
       const rankText = Number.isFinite(r) ? `Rating: ${r}` : `Rating: —`;
@@ -452,9 +500,16 @@ async function render(){
       const card = document.createElement("div");
       card.className = "card" + (snuffed ? " snuffed" : "");
 
-      const elimText = (p.eliminatedWeek !== null)
-        ? `Elim wk: ${p.eliminatedWeek}`
+      const effectiveElimWeek =
+        (jsonElimWeek !== null ? jsonElimWeek : p.eliminatedWeek);
+
+      const elimText = (effectiveElimWeek !== null)
+        ? `Elim wk: ${effectiveElimWeek}`
         : (snuffed ? `Elim: toggled` : `Still in`);
+
+      // const elimText = (p.eliminatedWeek !== null)
+      //   ? `Elim wk: ${p.eliminatedWeek}`
+      //   : (snuffed ? `Elim: toggled` : `Still in`);
 
       card.innerHTML = `
         <img src="${p.photo}" alt="${p.name}" loading="lazy" />
