@@ -230,10 +230,6 @@
   </div>
 
   <div class="toolbar">
-    <div class="pill">Week: <b id="weekLabel">1</b></div>
-    <button id="nextWeekBtn">Advance Week</button>
-    <button id="resetTogglesBtn" title="Clears snuffed toggles stored in your browser">Reset Snuffed (this device)</button>
-    <button id="resetWeekBtn" title="Resets week counter stored in your browser">Reset Week (this device)</button>
     <div class="pill">Scoring: <b>Win probability</b> (active players, 1/rank method)</div>
   </div>
 </header>
@@ -335,25 +331,6 @@ const DATA = {
 };
 
 // ------------------ App logic (no edits needed) ------------------
-const LS_KEY = "survivor_contest_state_v1";
-const LS_WEEK = "survivor_contest_week_v1";
-
-function loadState(){
-  try { return JSON.parse(localStorage.getItem(LS_KEY) || "{}"); } catch { return {}; }
-}
-function saveState(state){
-  localStorage.setItem(LS_KEY, JSON.stringify(state));
-}
-function getWeek(){
-  return Number(localStorage.getItem(LS_WEEK) || "1");
-}
-function setWeek(w){
-  localStorage.setItem(LS_WEEK, String(w));
-  document.getElementById("weekLabel").textContent = String(w);
-}
-function playerKey(owner, playerName){
-  return `${owner}::${playerName}`;
-}
 
 async function getRatingsAndStatus(){
   // Returns: { ratings: {name: number}, status: {name: {status, eliminatedWeek}} }
@@ -403,17 +380,11 @@ async function getRatingsAndStatus(){
 //   }
 // }
 
-function isSnuffed(p, owner, week, state, statusMap){
-  const k = playerKey(owner, p.name);
-  const toggledSnuffed = Boolean(state[k]);
+function isSnuffed(p, statusMap){
   const OUT_STATUSES = new Set(["OUT", "MED", "QUIT"]);
   const jsonStatus = OUT_STATUSES.has(statusMap?.[p.name]?.status);
   const jsonElimWeek = statusMap?.[p.name]?.eliminatedWeek ?? null;
-  const hardSnuffed =
-    jsonStatus ||
-    (jsonElimWeek !== null && jsonElimWeek <= week) ||
-    (p.eliminatedWeek !== null && p.eliminatedWeek <= week);
-  return toggledSnuffed || hardSnuffed;
+  return jsonStatus || jsonElimWeek !== null || p.eliminatedWeek !== null;
 }
 
 // ratings.json uses rank numbers: lower = better (rank 1 is the top player).
@@ -423,10 +394,10 @@ function reciprocal(rank){
 }
 
 // Raw reciprocal sum for one team (active players only).
-function computeTeamRawScore(team, rankings, week, state, statusMap){
+function computeTeamRawScore(team, rankings, statusMap){
   let sum = 0;
   for(const p of team.picks){
-    if(!isSnuffed(p, team.owner, week, state, statusMap)){
+    if(!isSnuffed(p, statusMap)){
       sum += reciprocal(rankings[p.name]);
     }
   }
@@ -434,28 +405,28 @@ function computeTeamRawScore(team, rankings, week, state, statusMap){
 }
 
 // Win probabilities for all teams (0-100), same order as DATA.teams.
-function computeWinProbabilities(teams, rankings, week, state, statusMap){
-  const raws = teams.map(t => computeTeamRawScore(t, rankings, week, state, statusMap));
+function computeWinProbabilities(teams, rankings, statusMap){
+  const raws = teams.map(t => computeTeamRawScore(t, rankings, statusMap));
   const total = raws.reduce((a, b) => a + b, 0);
   if(total <= 0) return raws.map(() => 0);
   return raws.map(r => (r / total) * 100);
 }
 
 // Per-player share of the global win pool as %.
-function playerWinContrib(p, owner, rankings, week, state, statusMap, globalTotal){
-  if(isSnuffed(p, owner, week, state, statusMap)) return 0;
+function playerWinContrib(p, rankings, statusMap, globalTotal){
+  if(isSnuffed(p, statusMap)) return 0;
   if(globalTotal <= 0) return 0;
   return (reciprocal(rankings[p.name]) / globalTotal) * 100;
 }
 
 // Lowest-ranked (best) active player across all teams.
 // Lower rank number = better, so we find the MINIMUM.
-function findTopContender(teams, rankings, week, state, statusMap){
+function findTopContender(teams, rankings, statusMap){
   let best = null;
   let bestRank = Infinity;
   for(const team of teams){
     for(const p of team.picks){
-      if(!isSnuffed(p, team.owner, week, state, statusMap)){
+      if(!isSnuffed(p, statusMap)){
         const r = rankings[p.name];
         if(Number.isFinite(r) && r < bestRank){
           bestRank = r;
@@ -481,16 +452,11 @@ async function render(){
   const grid = document.getElementById("grid");
   grid.innerHTML = "";
 
-  const week = getWeek();
-  setWeek(week);
-
   const { ratings: rankings, status: statusMap } = await getRatingsAndStatus();
-  //const rankings = await getRankings();
-  const state = loadState();
 
-  const probs = computeWinProbabilities(DATA.teams, rankings, week, state, statusMap);
-  const globalRawTotal = DATA.teams.reduce((sum, t) => sum + computeTeamRawScore(t, rankings, week, state, statusMap), 0);
-  const topContender = findTopContender(DATA.teams, rankings, week, state, statusMap);
+  const probs = computeWinProbabilities(DATA.teams, rankings, statusMap);
+  const globalRawTotal = DATA.teams.reduce((sum, t) => sum + computeTeamRawScore(t, rankings, statusMap), 0);
+  const topContender = findTopContender(DATA.teams, rankings, statusMap);
 
   DATA.teams.forEach((team, idx) => {
     const col = document.createElement("section");
@@ -521,12 +487,11 @@ async function render(){
     list.className = "players";
 
     team.picks.forEach(p => {
-      const k = playerKey(team.owner, p.name);
-      const snuffed = isSnuffed(p, team.owner, week, state, statusMap);
+      const snuffed = isSnuffed(p, statusMap);
       const jsonElimWeek = statusMap?.[p.name]?.eliminatedWeek ?? null;
 
       const r = rankings[p.name];
-      const contrib = playerWinContrib(p, team.owner, rankings, week, state, statusMap, globalRawTotal);
+      const contrib = playerWinContrib(p, rankings, statusMap, globalRawTotal);
       const isTop = topContender && topContender.name === p.name;
       const rankText = Number.isFinite(r) ? `Rank: ${r}` : `Rank: —`;
       const contribText = `${contrib.toFixed(1)}% win share`;
@@ -534,12 +499,8 @@ async function render(){
       const card = document.createElement("div");
       card.className = "card" + (snuffed ? " snuffed" : "");
 
-      const effectiveElimWeek =
-        (jsonElimWeek !== null ? jsonElimWeek : p.eliminatedWeek);
-
-      const elimText = (effectiveElimWeek !== null)
-        ? `Elim wk: ${effectiveElimWeek}`
-        : (snuffed ? `Elim: toggled` : `Still in`);
+      const effectiveElimWeek = jsonElimWeek ?? p.eliminatedWeek;
+      const elimText = effectiveElimWeek !== null ? `Elim wk: ${effectiveElimWeek}` : `Still in`;
 
       card.innerHTML = `
         <img src="${p.photo}" alt="${p.name}" loading="lazy" />
@@ -551,22 +512,8 @@ async function render(){
           ${isTop ? `<div class="rankBadge" style="border-color:var(--warn);color:var(--warn);">&#9733; Top Contender</div>` : ``}
           <div class="rankBadge">${rankText}</div>
           ${!snuffed ? `<div class="rankBadge" style="margin-top:2px;">${contribText}</div>` : ``}
-          <label title="Mark eliminated (stored in your browser)">
-            <input type="checkbox" ${snuffed ? "checked" : ""} />
-            Snuffed
-          </label>
         </div>
       `;
-
-      const checkbox = card.querySelector("input[type='checkbox']");
-      checkbox.addEventListener("change", () => {
-        // If eliminatedWeek is used, you can still override via toggle.  
-        // Toggle state persists per device/browser.  
-        const st = loadState();
-        st[k] = checkbox.checked ? 1 : 0;
-        saveState(st);
-        render();
-      });
 
       list.appendChild(card);
     });
@@ -577,22 +524,7 @@ async function render(){
   });
 }
 
-document.getElementById("nextWeekBtn").addEventListener("click", () => {
-  setWeek(getWeek() + 1);
-  render();
-});
-
-document.getElementById("resetTogglesBtn").addEventListener("click", () => {
-  localStorage.removeItem(LS_KEY);
-  render();
-});
-
-document.getElementById("resetWeekBtn").addEventListener("click", () => {
-  localStorage.removeItem(LS_WEEK);
-  render();
-});
-
-// Initial render.  
+// Initial render.
 render();
 </script>
 </body>
