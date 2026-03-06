@@ -10,7 +10,7 @@
       "Christian Hubicki": { "rating": 1, "status": "IN", "eliminatedWeek": null },
       "Cirie Fields": { "rating": 16, "status": "IN", "eliminatedWeek": null },
       "Colby Donaldson": { "rating": 5, "status": "IN", "eliminatedWeek": null },
-      "Dee Valladares": { "rating": 22, "status": "IN", "eliminatedWeek": null },
+      "Dee Valladares": { "rating": 21, "status": "IN", "eliminatedWeek": null },
       "Emily Flippen": { "rating": 9, "status": "IN", "eliminatedWeek": null },
       "Genevieve Mushaluk": { "rating": 4, "status": "IN", "eliminatedWeek": null },
       "Jenna Lewis-Dougherty": { "rating": 24, "status": "OUT", "eliminatedWeek": 1 },
@@ -23,7 +23,7 @@
       "Q Burdette": { "rating": 19, "status": "IN", "eliminatedWeek": null },
       "Rick Devens": { "rating": 8, "status": "IN", "eliminatedWeek": null },
       "Rizo Velovic": { "rating": 12, "status": "IN", "eliminatedWeek": null },
-      "Savannah Louie": { "rating": 21, "status": "IN", "eliminatedWeek": null },
+      "Savannah Louie": { "rating": 22, "status": "OUT", "eliminatedWeek": 2 },
       "Stephenie LaGrossa Kendrick": { "rating": 7, "status": "IN", "eliminatedWeek": null },
       "Tiffany Ervin": { "rating": 17, "status": "IN", "eliminatedWeek": null }
   }
