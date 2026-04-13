@@ -110,6 +110,12 @@ Defined in `DATA.teams` array (~line 285). Each entry has:
 
 ---
 
+## Working Instructions for Claude
+
+- **Always update the Change Log below** when making any change to `index.html`, `ratings.json`, or `CLAUDE.md` itself. Add a row with today's date and a brief description of what changed.
+
+---
+
 ## Change Log
 
 | Date | Change |
@@ -117,3 +123,4 @@ Defined in `DATA.teams` array (~line 285). Each entry has:
 | 2026-04-13 | Replaced `1/rank` scoring with `1/sqrt(rank)` to reduce bias toward top-ranked player |
 | 2026-04-13 | Updated intro text: rankings now sourced from ChatGPT weekend research (not True Dork Times) |
 | 2026-04-13 | Created this CLAUDE.md |
+| 2026-04-13 | Simplified header subtitle — removed redundant scoring formula description (now only shown in pill) |
