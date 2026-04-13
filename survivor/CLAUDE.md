@@ -124,3 +124,4 @@ Defined in `DATA.teams` array (~line 285). Each entry has:
 | 2026-04-13 | Updated intro text: rankings now sourced from ChatGPT weekend research (not True Dork Times) |
 | 2026-04-13 | Created this CLAUDE.md |
 | 2026-04-13 | Simplified header subtitle — removed redundant scoring formula description (now only shown in pill) |
+| 2026-04-13 | Added transparency note to header showing the ChatGPT prompt used to generate rankings |
