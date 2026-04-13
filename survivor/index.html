@@ -225,12 +225,12 @@
 <body>
 <header>
   <h1>Survivor Contest Tracker</h1>
-  <div class="sub">
-    Toggle “Snuffed” for eliminated players. Win probability uses <a href="https://www.truedorktimes.com/s50/kaiser/" style="color:white;font-weight:bold;">True Dork Times / Kaiser Island</a> rankings (1/rank method, active players only) .
+  <div class=”sub”>
+    Rankings are updated each weekend based on ChatGPT research and synthesis of online recaps and analysis of each player's performance and position to win the game. Win probability is calculated from those rankings using the 1/√rank method (active players only).
   </div>
 
   <div class="toolbar">
-    <div class="pill">Scoring: <b>Win probability</b> (active players, 1/rank method)</div>
+    <div class="pill">Scoring: <b>Win probability</b> (active players, 1/√rank method)</div>
   </div>
 </header>
 
@@ -390,7 +390,7 @@ function isSnuffed(p, statusMap){
 // ratings.json uses rank numbers: lower = better (rank 1 is the top player).
 // Reciprocal 1/rank gives rank-1 the most weight.
 function reciprocal(rank){
-  return Number.isFinite(rank) && rank > 0 ? 1 / rank : 0;
+  return Number.isFinite(rank) && rank > 0 ? 1 / Math.sqrt(rank) : 0;
 }
 
 // Raw reciprocal sum for one team (active players only).
