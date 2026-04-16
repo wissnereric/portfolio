@@ -3,19 +3,19 @@
   "source": "True Dork Times - Kaiser Island",
   "players": {
       "Angelina Keeley": { "rating": 19, "status": "OUT", "eliminatedWeek": 5 },
-      "Aubry Bracco": { "rating": 8, "status": "IN", "eliminatedWeek": null },
-      "Benjamin \"Coach\" Wade": { "rating": 13, "status": "IN", "eliminatedWeek": null },
+      "Aubry Bracco": { "rating": 7, "status": "IN", "eliminatedWeek": null },
+      "Benjamin \"Coach\" Wade": { "rating": 12, "status": "OUT", "eliminatedWeek": 8 },
       "Charlie Davis": { "rating": 18, "status": "OUT", "eliminatedWeek": 5 },
-      "Chrissy Hofbeck": { "rating": 6, "status": "IN", "eliminatedWeek": null },
+      "Chrissy Hofbeck": { "rating": 13, "status": "OUT", "eliminatedWeek": 8 },
       "Christian Hubicki": { "rating": 4, "status": "IN", "eliminatedWeek": null },
       "Cirie Fields": { "rating": 2, "status": "IN", "eliminatedWeek": null },
       "Colby Donaldson": { "rating": 15, "status": "OUT", "eliminatedWeek": 6 },
       "Dee Valladares": { "rating": 14, "status": "OUT", "eliminatedWeek": 7 },
-      "Emily Flippen": { "rating": 12, "status": "IN", "eliminatedWeek": null },
+      "Emily Flippen": { "rating": 11, "status": "IN", "eliminatedWeek": null },
       "Genevieve Mushaluk": { "rating": 16, "status": "OUT", "eliminatedWeek": 6 },
       "Jenna Lewis-Dougherty": { "rating": 24, "status": "OUT", "eliminatedWeek": 1 },
-      "Joe Hunter": { "rating": 9, "status": "IN", "eliminatedWeek": null },
-      "Jonathan Young": { "rating": 10, "status": "IN", "eliminatedWeek": null },
+      "Joe Hunter": { "rating": 8, "status": "IN", "eliminatedWeek": null },
+      "Jonathan Young": { "rating": 9, "status": "IN", "eliminatedWeek": null },
       "Kamilla Karthigesu": { "rating": 17, "status": "OUT", "eliminatedWeek": 6 },
       "Kyle Fraser": { "rating": 23, "status": "MED", "eliminatedWeek": 1 },
       "Mike White": { "rating": 20, "status": "OUT", "eliminatedWeek": 4 },
@@ -24,7 +24,7 @@
       "Rick Devens": { "rating": 5, "status": "IN", "eliminatedWeek": null },
       "Rizo Velovic": { "rating": 1, "status": "IN", "eliminatedWeek": null },
       "Savannah Louie": { "rating": 22, "status": "OUT", "eliminatedWeek": 2 },
-      "Stephenie LaGrossa Kendrick": { "rating": 7, "status": "IN", "eliminatedWeek": null },
-      "Tiffany Ervin": { "rating": 11, "status": "IN", "eliminatedWeek": null }
+      "Stephenie LaGrossa Kendrick": { "rating": 6, "status": "IN", "eliminatedWeek": null },
+      "Tiffany Ervin": { "rating": 10, "status": "IN", "eliminatedWeek": null }
   }
 }
