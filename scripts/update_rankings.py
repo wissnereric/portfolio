@@ -81,7 +81,10 @@ def main() -> None:
         f'to {num_active} (worst positioned), considering advantages, jury relationships, '
         f'alliance standing, and recent challenge and strategic performance. '
         f'Return ONLY valid JSON with no explanation and no markdown, in exactly this format: '
-        f'[{{"name": "PlayerName", "rank": 1}}, ...]. '
+        f'{{"rankings": [{{"name": "PlayerName", "rank": 1}}, ...], '
+        f'"commentary": "2-3 paragraph plain-text analysis of the episode and current game state. '
+        f'Cover the key strategic moves and why the top-ranked players are well-positioned. '
+        f'No markdown, no bullet points — flowing prose only."}}. '
         f'Active players to rank: {active_names}. '
         f'Previous rankings for context — do not re-rank OUT or MED players: {previous_rankings}'
     )
@@ -92,10 +95,8 @@ def main() -> None:
 
     response = client.messages.create(
         model=MODEL,
-        max_tokens=1024,
-        # Cache the stable prefix (everything up to the episode-specific question
-        # would be stable, but here the whole prompt varies, so we cache the
-        # message-level block for any future same-episode calls).
+        max_tokens=2048,
+        # Cache the stable prefix for any same-episode re-runs.
         messages=[
             {
                 "role": "user",
@@ -126,14 +127,21 @@ def main() -> None:
     cleaned = extract_json_from_response(text_content)
 
     try:
-        new_rankings = json.loads(cleaned)
+        parsed = json.loads(cleaned)
     except json.JSONDecodeError as exc:
         print(f"ERROR: Failed to parse JSON from response: {exc}", file=sys.stderr)
         print(f"Raw text was:\n{text_content}", file=sys.stderr)
         sys.exit(1)
 
-    if not isinstance(new_rankings, list):
-        print("ERROR: Expected a JSON array from Claude.", file=sys.stderr)
+    # Accept either the new {rankings, commentary} shape or the legacy bare array.
+    if isinstance(parsed, list):
+        new_rankings = parsed
+        commentary = ""
+    elif isinstance(parsed, dict) and "rankings" in parsed:
+        new_rankings = parsed["rankings"]
+        commentary = str(parsed.get("commentary", "")).strip()
+    else:
+        print("ERROR: Unexpected JSON shape from Claude.", file=sys.stderr)
         sys.exit(1)
 
     rank_map: dict[str, int] = {item["name"]: item["rank"] for item in new_rankings}
@@ -155,6 +163,9 @@ def main() -> None:
 
     data["updated"] = date.today().isoformat()
     data["source"] = "Claude API - web search synthesis"
+    data["episode"] = episode_num
+    if commentary:
+        data["commentary"] = commentary
 
     save_ratings(data)
 

@@ -127,3 +127,4 @@ Defined in `DATA.teams` array (~line 285). Each entry has:
 | 2026-04-13 | Added transparency note to header showing the ChatGPT prompt used to generate rankings |
 | 2026-04-23 | Added `scripts/update_rankings.py` — automated Claude API + web search rankings updater |
 | 2026-04-23 | Added `.github/workflows/update_rankings.yml` — weekly cron job (Sat 19:00 UTC) to run the updater and commit ratings.json |
+| 2026-04-23 | Added commentary feature: script saves `commentary` + `episode` fields to ratings.json; index.html renders a styled "Episode N Analysis" panel below the grid |

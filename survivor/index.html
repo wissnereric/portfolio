@@ -219,6 +219,40 @@
       border: 1px solid var(--border);
       font-size: 12px;
     }
+    .commentary-panel{
+      margin-top: 20px;
+      background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      overflow: hidden;
+    }
+    .commentary-head{
+      padding: 12px 16px 10px;
+      background: rgba(0,0,0,.18);
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 12px;
+    }
+    .commentary-title{
+      font-weight: 800;
+      font-size: 15px;
+      margin: 0;
+    }
+    .commentary-meta{
+      color: var(--muted);
+      font-size: 12px;
+      white-space: nowrap;
+    }
+    .commentary-body{
+      padding: 14px 16px 16px;
+      font-size: 14px;
+      line-height: 1.65;
+      color: var(--text);
+    }
+    .commentary-body p{ margin: 0 0 12px; }
+    .commentary-body p:last-child{ margin-bottom: 0; }
   </style>
 </head>
 
@@ -239,6 +273,7 @@
 
 <main>
   <div id="grid" class="grid"></div>
+  <div id="commentary" class="commentary-panel" style="display:none;"></div>
 
   <!-- <div class="footerNote">
     Update mechanism: edit the <code class="inline">DATA.teams</code> list (names, headshot URLs, and ranks) or paste new ranks into <code class="inline">DATA.rankings</code>.  
@@ -366,9 +401,13 @@ async function getRatingsAndStatus(){
       };
     }
 
-    return { ratings, status };
+    const commentary = json?.commentary || "";
+    const episode = json?.episode ?? null;
+    const updated = json?.updated || "";
+
+    return { ratings, status, commentary, episode, updated };
   }catch{
-    return { ratings: (DATA.rankings || {}), status: {} };
+    return { ratings: (DATA.rankings || {}), status: {}, commentary: "", episode: null, updated: "" };
   }
 }
 // async function getRankings(){
@@ -455,7 +494,7 @@ async function render(){
   const grid = document.getElementById("grid");
   grid.innerHTML = "";
 
-  const { ratings: rankings, status: statusMap } = await getRatingsAndStatus();
+  const { ratings: rankings, status: statusMap, commentary, episode, updated } = await getRatingsAndStatus();
 
   const probs = computeWinProbabilities(DATA.teams, rankings, statusMap);
   const globalRawTotal = DATA.teams.reduce((sum, t) => sum + computeTeamRawScore(t, rankings, statusMap), 0);
@@ -525,6 +564,25 @@ async function render(){
     col.appendChild(list);
     grid.appendChild(col);
   });
+}
+
+  const commentaryEl = document.getElementById("commentary");
+  if(commentary){
+    const title = episode ? `Episode ${episode} Analysis` : "Game Analysis";
+    const meta = updated ? `AI-generated · ${updated}` : "AI-generated";
+    const paragraphs = commentary.split(/\n\n+/).filter(Boolean)
+      .map(p => `<p>${p.trim()}</p>`).join("");
+    commentaryEl.innerHTML = `
+      <div class="commentary-head">
+        <div class="commentary-title">${title}</div>
+        <div class="commentary-meta">${meta}</div>
+      </div>
+      <div class="commentary-body">${paragraphs}</div>
+    `;
+    commentaryEl.style.display = "";
+  } else {
+    commentaryEl.style.display = "none";
+  }
 }
 
 // Initial render.
