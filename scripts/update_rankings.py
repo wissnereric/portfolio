@@ -14,7 +14,7 @@ from pathlib import Path
 import anthropic
 
 RATINGS_PATH = Path(__file__).parent.parent / "survivor" / "ratings.json"
-MODEL = "claude-sonnet-4-20250514"
+MODEL = "claude-sonnet-4-6"
 
 
 def load_ratings() -> dict:
