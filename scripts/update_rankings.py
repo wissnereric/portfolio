@@ -48,12 +48,16 @@ def build_previous_rankings(players: dict) -> list[dict]:
 
 
 def extract_json_from_response(text: str) -> str:
-    """Strip markdown code fences if Claude wrapped the JSON."""
+    """Strip markdown code fences or leading prose before the JSON object."""
     text = text.strip()
     # Remove ```json ... ``` or ``` ... ```
     match = re.search(r"```(?:json)?\s*([\s\S]+?)\s*```", text)
     if match:
         return match.group(1).strip()
+    # Find the first JSON object/array and discard any leading prose
+    match = re.search(r"[{\[]", text)
+    if match:
+        return text[match.start():]
     return text
 
 
@@ -86,7 +90,8 @@ def main() -> None:
         f'Cover the key strategic moves and why the top-ranked players are well-positioned. '
         f'No markdown, no bullet points — flowing prose only."}}. '
         f'Active players to rank: {active_names}. '
-        f'Previous rankings for context — do not re-rank OUT or MED players: {previous_rankings}'
+        f'Previous rankings for context — do not re-rank OUT or MED players: {previous_rankings}. '
+        f'Do not include any text before or after the JSON object — your entire response must be valid JSON starting with {{.'
     )
 
     client = anthropic.Anthropic()
