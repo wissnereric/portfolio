@@ -34,7 +34,7 @@ def extract_episode_num(players: dict) -> int:
         for info in players.values()
         if info.get("eliminatedWeek") is not None
     ]
-    return max(weeks) + 1 if weeks else 1
+    return max(weeks) if weeks else 1
 
 
 def build_previous_rankings(players: dict) -> list[dict]:
