@@ -2,8 +2,8 @@ name: Update Survivor Rankings
 
 on:
   schedule:
-    # Every Saturday at 19:00 UTC (3pm ET)
-    - cron: "0 19 * * 6"
+    # Every Thursday at 23:00 UTC (6pm ET / 7pm ET during DST)
+    - cron: "0 23 * * 4"
   workflow_dispatch:
 
 jobs:
