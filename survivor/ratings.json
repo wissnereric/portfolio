@@ -98,7 +98,7 @@
       "eliminatedWeek": 3
     },
     "Rick Devens": {
-      "rating": 10,
+      "rating": 9,
       "status": "IN",
       "eliminatedWeek": null
     },
@@ -113,9 +113,9 @@
       "eliminatedWeek": 2
     },
     "Stephenie LaGrossa Kendrick": {
-      "rating": 8,
-      "status": "IN",
-      "eliminatedWeek": null
+      "rating": 10,
+      "status": "OUT",
+      "eliminatedWeek": 10
     },
     "Tiffany Ervin": {
       "rating": 5,
