@@ -260,10 +260,10 @@
 <header>
   <h1>Survivor Contest Tracker</h1>
   <div class=”sub”>
-    Rankings are updated each weekend based on ChatGPT research and synthesis of online recaps and analysis. Those rankings then drive each contest participant's probability of winning.
+    Rankings are updated automatically every Thursday at 11 PM UTC via a GitHub Actions workflow. It calls the Claude API (claude-sonnet-4-6) with live web search, which synthesizes the week&rsquo;s episode recaps and Survivor analysis, then commits updated rankings and commentary directly to this site.
   </div>
   <div class=”sub” style=”margin-top:6px;”>
-    For full transparency, here is the prompt used to generate the rankings: <em>&ldquo;After episode N of Survivor 50, provide rankings for the remaining players considering their advantages, relationships, and position to win the game. Use all available recaps and analyses you can find online.&rdquo;</em>
+    For transparency, the prompt given to Claude is: <em>&ldquo;It is after Episode N of Survivor 50. Search for recaps and analysis published in the past week. Based on that research, rank all remaining active players from 1 (best positioned to win) to N (worst positioned), considering advantages, jury relationships, alliance standing, and recent challenge and strategic performance. Return rankings plus a 2&ndash;3 paragraph plain-text analysis of the episode and current game state.&rdquo;</em>
   </div>
 
   <div class=”toolbar”>
