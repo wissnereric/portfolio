@@ -8,7 +8,7 @@
       "eliminatedWeek": 5
     },
     "Aubry Bracco": {
-      "rating": 8,
+      "rating": 7,
       "status": "IN",
       "eliminatedWeek": null
     },
@@ -49,8 +49,8 @@
     },
     "Emily Flippen": {
       "rating": 9,
-      "status": "IN",
-      "eliminatedWeek": null
+      "status": "OUT",
+      "eliminatedWeek": 11
     },
     "Genevieve Mushaluk": {
       "rating": 16,
@@ -63,12 +63,12 @@
       "eliminatedWeek": 1
     },
     "Joe Hunter": {
-      "rating": 7,
+      "rating": 6,
       "status": "IN",
       "eliminatedWeek": null
     },
     "Jonathan Young": {
-      "rating": 5,
+      "rating": 4,
       "status": "IN",
       "eliminatedWeek": null
     },
@@ -88,9 +88,9 @@
       "eliminatedWeek": 4
     },
     "Ozzy Lusth": {
-      "rating": 2,
-      "status": "IN",
-      "eliminatedWeek": null
+      "rating": 8,
+      "status": "OUT",
+      "eliminatedWeek": 11
     },
     "Q Burdette": {
       "rating": 21,
@@ -98,12 +98,12 @@
       "eliminatedWeek": 3
     },
     "Rick Devens": {
-      "rating": 4,
+      "rating": 3,
       "status": "IN",
       "eliminatedWeek": null
     },
     "Rizo Velovic": {
-      "rating": 6,
+      "rating": 5,
       "status": "IN",
       "eliminatedWeek": null
     },
@@ -118,7 +118,7 @@
       "eliminatedWeek": 10
     },
     "Tiffany Ervin": {
-      "rating": 3,
+      "rating": 2,
       "status": "IN",
       "eliminatedWeek": null
     }
