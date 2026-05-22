@@ -63,12 +63,12 @@
       "eliminatedWeek": 1
     },
     "Joe Hunter": {
-      "rating": 5,
+      "rating": 2,
       "status": "IN",
       "eliminatedWeek": null
     },
     "Jonathan Young": {
-      "rating": 4,
+      "rating": 3,
       "status": "IN",
       "eliminatedWeek": null
     },
@@ -103,9 +103,9 @@
       "eliminatedWeek": 12
     },
     "Rizo Velovic": {
-      "rating": 3,
-      "status": "IN",
-      "eliminatedWeek": null
+      "rating": 4,
+      "status": "OUT",
+      "eliminatedWeek": 13
     },
     "Savannah Louie": {
       "rating": 22,
@@ -118,9 +118,9 @@
       "eliminatedWeek": 10
     },
     "Tiffany Ervin": {
-      "rating": 2,
-      "status": "IN",
-      "eliminatedWeek": null
+      "rating": 5,
+      "status": "OUT",
+      "eliminatedWeek": 13
     }
   },
   "episode": 12,
