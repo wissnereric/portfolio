@@ -1,9 +1,10 @@
 name: Update Survivor Rankings
 
 on:
-  schedule:
-    # Every Thursday at 23:00 UTC (6pm ET / 7pm ET during DST)
-    - cron: "0 23 * * 4"
+  # Schedule paused between seasons — uncomment to re-enable
+  # schedule:
+  #   # Every Thursday at 23:00 UTC (6pm ET / 7pm ET during DST)
+  #   - cron: "0 23 * * 4"
   workflow_dispatch:
 
 jobs:

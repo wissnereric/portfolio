@@ -129,3 +129,4 @@ Defined in `DATA.teams` array (~line 285). Each entry has:
 | 2026-04-23 | Added `.github/workflows/update_rankings.yml` — weekly cron job (Thu 23:00 UTC / 6–7 PM ET) to run the updater and commit ratings.json |
 | 2026-04-23 | Added commentary feature: script saves `commentary` + `episode` fields to ratings.json; index.html renders a styled "Episode N Analysis" panel below the grid |
 | 2026-04-30 | Updated header subtitle: reflects automated Claude API (not ChatGPT), Thursday 11 PM UTC schedule, and actual prompt text used by update_rankings.py |
+| 2026-06-08 | Paused weekly rankings workflow (commented out cron schedule) until next season — workflow_dispatch still available for manual runs |
