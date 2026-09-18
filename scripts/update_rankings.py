@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Weekly Survivor 50 rankings updater.
+Weekly Survivor 51 rankings updater.
 Reads survivor/ratings.json, queries Claude with web search, updates IN-player ratings.
 """
 
@@ -79,7 +79,7 @@ def main() -> None:
     print(f"Active players ({num_active}): {', '.join(active_names)}")
 
     prompt = (
-        f'It is after Episode {episode_num} of Survivor 50. '
+        f'It is after Episode {episode_num} of Survivor 51. '
         f'Search for recaps and analysis published in the past week. '
         f'Based on that research, rank all remaining active players from 1 (best positioned to win) '
         f'to {num_active} (worst positioned), considering advantages, jury relationships, '

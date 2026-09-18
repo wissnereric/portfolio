@@ -1,0 +1,503 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Survivor 51 Contest Tracker — Brittany's League</title>
+  <style>
+    :root{
+      --bg:#0b1020;
+      --panel:#121a33;
+      --panel2:#0f1730;
+      --text:#e9ecf5;
+      --muted:#aab3d1;
+      --border:rgba(255,255,255,.12);
+      --snuffed:rgba(255,255,255,.22);
+      --good:#6ee7b7;
+      --warn:#fbbf24;
+      --bad:#fb7185;
+    }
+    *{ box-sizing:border-box; }
+    body{
+      margin:0;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      background: radial-gradient(1000px 600px at 20% 0%, #182458 0%, var(--bg) 60%);
+      color: var(--text);
+    }
+    header{
+      padding: 18px 16px 10px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    h1{ margin:0 0 6px; font-size: 20px; font-weight: 750; letter-spacing:.2px; }
+    .sub{ color: var(--muted); font-size: 13px; line-height: 1.35; }
+    .toolbar{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      margin-top:12px;
+      align-items:center;
+    }
+    .pill{
+      background: rgba(255,255,255,.06);
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      padding: 8px 10px;
+      font-size: 12px;
+      color: var(--muted);
+      display:flex;
+      gap:8px;
+      align-items:center;
+    }
+    .pill b{ color: var(--text); font-weight:700; }
+    .pill.accent{
+      border-color: rgba(110,231,183,.4);
+      color: var(--good);
+    }
+    button{
+      background: rgba(255,255,255,.08);
+      color: var(--text);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 8px 10px;
+      cursor:pointer;
+      font-size: 12px;
+    }
+    button:hover{ background: rgba(255,255,255,.12); }
+    main{
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 10px 16px 22px;
+    }
+    .grid{
+      display:grid;
+      gap: 12px;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+    @media (max-width: 980px){
+      .grid{ grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
+    @media (max-width: 540px){
+      .grid{ grid-template-columns: 1fr; }
+    }
+    .col{
+      background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      overflow:hidden;
+    }
+    .colHead{
+      padding: 12px 12px 10px;
+      background: rgba(0,0,0,.18);
+      border-bottom: 1px solid var(--border);
+    }
+    .colHeadTop{
+      display:flex;
+      justify-content:space-between;
+      gap:10px;
+      align-items:flex-start;
+    }
+    .owner{
+      font-weight:800;
+      font-size: 15px;
+      margin:0;
+    }
+    .score{
+      text-align:right;
+      font-size: 12px;
+      color: var(--muted);
+      line-height:1.2;
+    }
+    .score strong{ color: var(--text); font-size: 14px; }
+    .score .bar{
+      height:6px;
+      background: rgba(255,255,255,.10);
+      border-radius: 999px;
+      margin-top:6px;
+      overflow:hidden;
+    }
+    .score .fill{ height:100%; width:0%; background: var(--good); }
+    .players{
+      padding: 10px 10px 12px;
+      display:grid;
+      gap: 10px;
+    }
+    .card{
+      display:grid;
+      grid-template-columns: 52px 1fr auto;
+      gap: 10px;
+      align-items:center;
+      padding: 10px;
+      background: rgba(0,0,0,.16);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+    }
+    .card.snuffed{
+      opacity: .55;
+      filter: grayscale(80%);
+      border-color: rgba(255,255,255,.09);
+      background: rgba(0,0,0,.12);
+      position:relative;
+    }
+    .card.snuffed::after{
+      content:"FIRE OUT";
+      position:absolute;
+      right:10px;
+      bottom:8px;
+      opacity:.95;
+      font-size: 10px;
+      letter-spacing: .7px;
+      padding: 2px 8px;
+      border: 1px solid rgba(255,255,255,.22);
+      border-radius: 999px;
+      background: rgba(0,0,0,.35);
+      color: rgba(255,255,255,.82);
+    }
+    img{
+      width: 52px;
+      height: 52px;
+      border-radius: 12px;
+      object-fit: cover;
+      border: 1px solid rgba(255,255,255,.18);
+      background: rgba(255,255,255,.06);
+    }
+    .name{
+      font-weight: 750;
+      font-size: 13px;
+      line-height: 1.1;
+      margin:0;
+    }
+    .meta{
+      color: var(--muted);
+      font-size: 12px;
+      margin-top: 4px;
+      line-height: 1.2;
+    }
+    .toggle{
+      display:flex;
+      flex-direction:column;
+      align-items:flex-end;
+      gap:6px;
+      min-width: 108px;
+    }
+    label{
+      font-size: 11px;
+      color: var(--muted);
+      display:flex;
+      gap:6px;
+      align-items:center;
+      cursor:pointer;
+      user-select:none;
+    }
+    input[type="checkbox"]{
+      width: 15px;
+      height: 15px;
+      accent-color: var(--bad);
+    }
+    .rankBadge{
+      font-size: 11px;
+      padding: 4px 8px;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      color: var(--muted);
+      background: rgba(255,255,255,.05);
+    }
+    .footerNote{
+      color: var(--muted);
+      font-size: 12px;
+      margin-top: 14px;
+      line-height: 1.35;
+    }
+    code.inline{
+      background: rgba(255,255,255,.08);
+      padding: 2px 6px;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      font-size: 12px;
+    }
+    .commentary-panel{
+      margin-top: 20px;
+      background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      overflow: hidden;
+    }
+    .commentary-head{
+      padding: 12px 16px 10px;
+      background: rgba(0,0,0,.18);
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 12px;
+    }
+    .commentary-title{
+      font-weight: 800;
+      font-size: 15px;
+      margin: 0;
+    }
+    .commentary-meta{
+      color: var(--muted);
+      font-size: 12px;
+      white-space: nowrap;
+    }
+    .commentary-body{
+      padding: 14px 16px 16px;
+      font-size: 14px;
+      line-height: 1.65;
+      color: var(--text);
+    }
+    .commentary-body p{ margin: 0 0 12px; }
+    .commentary-body p:last-child{ margin-bottom: 0; }
+  </style>
+</head>
+
+<body>
+<header>
+  <h1>Survivor Contest Tracker</h1>
+  <div class="sub">
+    Rankings are updated automatically every Thursday at 11 PM UTC via a GitHub Actions workflow. It calls the Claude API (claude-sonnet-4-6) with live web search, which synthesizes the week&rsquo;s episode recaps and Survivor analysis, then commits updated rankings and commentary directly to this site.
+  </div>
+  <div class="sub" style="margin-top:6px;">
+    For transparency, the prompt given to Claude is: <em>&ldquo;It is after Episode N of Survivor 51. Search for recaps and analysis published in the past week. Based on that research, rank all remaining active players from 1 (best positioned to win) to N (worst positioned), considering advantages, jury relationships, alliance standing, and recent challenge and strategic performance. Return rankings plus a 2&ndash;3 paragraph plain-text analysis of the episode and current game state.&rdquo;</em>
+  </div>
+
+  <div class="toolbar">
+    <div class="pill accent">League: <b>Brittany's Group</b></div>
+    <div class="pill">Scoring: <b>Win probability</b> (active players, 1/√rank method)</div>
+  </div>
+</header>
+
+<main>
+  <div id="grid" class="grid"></div>
+  <div id="commentary" class="commentary-panel" style="display:none;"></div>
+</main>
+
+<script>
+/**
+ * 1) EDIT THIS SECTION WEEKLY.
+ * - photo: use direct image URLs (or store images in your repo and reference /images/name.jpg).
+ * - rankings: subjective "strength" score; higher = better.
+ * - You can keep snuffed state as a browser toggle (localStorage) OR hard-code eliminatedWeek for permanence.
+ */
+const DATA = {
+  seasonLabel: "Survivor 51",
+  // Shares the same weekly rankings feed as the main index.html — only the
+  // picks below differ between the two contests.
+  rankingsUrl: "./ratings.json",
+
+  // No draft yet — run assign.html after Brittany's group drafts and paste
+  // the generated teams array here (owners and picks both come from the tool).
+  teams: []
+};
+
+// ------------------ App logic (no edits needed) ------------------
+
+async function getRatingsAndStatus(){
+  // Returns: { ratings: {name: number}, status: {name: {status, eliminatedWeek}} }
+  if(!DATA.rankingsUrl){
+    return { ratings: (DATA.rankings || {}), status: {} };
+  }
+
+  try{
+    const res = await fetch(DATA.rankingsUrl, { cache: "no-store" });
+    if(!res.ok) throw new Error("Fetch failed");
+
+    const json = await res.json();
+    const players = json?.players || {};
+
+    const ratings = {};
+    const status = {};
+
+    for(const [name, obj] of Object.entries(players)){
+      const r = Number(obj?.rating);
+      if(Number.isFinite(r)) ratings[name] = r;
+
+      const s = String(obj?.status || "").toUpperCase();
+      const ew = (obj?.eliminatedWeek === null || obj?.eliminatedWeek === undefined)
+        ? null
+        : Number(obj.eliminatedWeek);
+
+      status[name] = {
+        status: s || "IN",
+        eliminatedWeek: Number.isFinite(ew) ? ew : null
+      };
+    }
+
+    const commentary = json?.commentary || "";
+    const episode = json?.episode ?? null;
+    const updated = json?.updated || "";
+
+    return { ratings, status, commentary, episode, updated };
+  }catch{
+    return { ratings: (DATA.rankings || {}), status: {}, commentary: "", episode: null, updated: "" };
+  }
+}
+
+function isSnuffed(p, statusMap){
+  const OUT_STATUSES = new Set(["OUT", "MED", "QUIT"]);
+  const jsonStatus = OUT_STATUSES.has(statusMap?.[p.name]?.status);
+  const jsonElimWeek = statusMap?.[p.name]?.eliminatedWeek ?? null;
+  return jsonStatus || jsonElimWeek !== null || p.eliminatedWeek !== null;
+}
+
+// ratings.json uses rank numbers: lower = better (rank 1 is the top player).
+// Reciprocal 1/rank gives rank-1 the most weight.
+function reciprocal(rank){
+  return Number.isFinite(rank) && rank > 0 ? 1 / Math.sqrt(rank) : 0;
+}
+
+// Raw reciprocal sum for one team (active players only).
+function computeTeamRawScore(team, rankings, statusMap){
+  let sum = 0;
+  for(const p of team.picks){
+    if(!isSnuffed(p, statusMap)){
+      sum += reciprocal(rankings[p.name]);
+    }
+  }
+  return sum;
+}
+
+// Win probabilities for all teams (0-100), same order as DATA.teams.
+function computeWinProbabilities(teams, rankings, statusMap){
+  const raws = teams.map(t => computeTeamRawScore(t, rankings, statusMap));
+  const total = raws.reduce((a, b) => a + b, 0);
+  if(total <= 0) return raws.map(() => 0);
+  return raws.map(r => (r / total) * 100);
+}
+
+// Per-player share of the global win pool as %.
+function playerWinContrib(p, rankings, statusMap, globalTotal){
+  if(isSnuffed(p, statusMap)) return 0;
+  if(globalTotal <= 0) return 0;
+  return (reciprocal(rankings[p.name]) / globalTotal) * 100;
+}
+
+// Lowest-ranked (best) active player across all teams.
+// Lower rank number = better, so we find the MINIMUM.
+function findTopContender(teams, rankings, statusMap){
+  let best = null;
+  let bestRank = Infinity;
+  for(const team of teams){
+    for(const p of team.picks){
+      if(!isSnuffed(p, statusMap)){
+        const r = rankings[p.name];
+        if(Number.isFinite(r) && r < bestRank){
+          bestRank = r;
+          best = { name: p.name, owner: team.owner };
+        }
+      }
+    }
+  }
+  return best;
+}
+
+function scoreToBarWidth(prob){
+  return Math.max(0, Math.min(100, prob));
+}
+
+function scoreToColor(prob){
+  if(prob >= 30) return "var(--good)";
+  if(prob >= 18) return "var(--warn)";
+  return "var(--bad)";
+}
+
+async function render(){
+  const grid = document.getElementById("grid");
+  grid.innerHTML = "";
+
+  const { ratings: rankings, status: statusMap, commentary, episode, updated } = await getRatingsAndStatus();
+
+  const probs = computeWinProbabilities(DATA.teams, rankings, statusMap);
+  const globalRawTotal = DATA.teams.reduce((sum, t) => sum + computeTeamRawScore(t, rankings, statusMap), 0);
+  const topContender = findTopContender(DATA.teams, rankings, statusMap);
+
+  DATA.teams.forEach((team, idx) => {
+    const col = document.createElement("section");
+    col.className = "col";
+
+    const head = document.createElement("div");
+    head.className = "colHead";
+
+    const prob = probs[idx];
+    const barW = scoreToBarWidth(prob);
+    const barColor = scoreToColor(prob);
+
+    head.innerHTML = `
+      <div class="colHeadTop">
+        <div>
+          <div class="owner">${team.owner}</div>
+          <div class="sub" style="margin-top:4px;">${DATA.seasonLabel}</div>
+        </div>
+        <div class="score">
+          <div>Win probability</div>
+          <strong>${prob.toFixed(1)}%</strong>
+          <div class="bar"><div class="fill" style="width:${barW}%; background:${barColor};"></div></div>
+        </div>
+      </div>
+    `;
+
+    const list = document.createElement("div");
+    list.className = "players";
+
+    team.picks.forEach(p => {
+      const snuffed = isSnuffed(p, statusMap);
+      const jsonElimWeek = statusMap?.[p.name]?.eliminatedWeek ?? null;
+
+      const r = rankings[p.name];
+      const contrib = playerWinContrib(p, rankings, statusMap, globalRawTotal);
+      const isTop = topContender && topContender.name === p.name;
+      const rankText = Number.isFinite(r) ? `Rank: ${r}` : `Rank: —`;
+      const contribText = `${contrib.toFixed(1)}% win share`;
+
+      const card = document.createElement("div");
+      card.className = "card" + (snuffed ? " snuffed" : "");
+
+      const effectiveElimWeek = jsonElimWeek ?? p.eliminatedWeek;
+      const elimText = effectiveElimWeek !== null ? `Elim wk: ${effectiveElimWeek}` : `Still in`;
+
+      card.innerHTML = `
+        <img src="${p.photo}" alt="${p.name}" loading="lazy" />
+        <div>
+          <p class="name">${p.name}</p>
+          <div class="meta">${elimText}</div>
+        </div>
+        <div class="toggle">
+          ${isTop ? `<div class="rankBadge" style="border-color:var(--warn);color:var(--warn);">&#9733; Top Contender</div>` : ``}
+          <div class="rankBadge">${rankText}</div>
+          ${!snuffed ? `<div class="rankBadge" style="margin-top:2px;">${contribText}</div>` : ``}
+        </div>
+      `;
+
+      list.appendChild(card);
+    });
+
+    col.appendChild(head);
+    col.appendChild(list);
+    grid.appendChild(col);
+  });
+
+  const commentaryEl = document.getElementById("commentary");
+  if(commentary){
+    const title = episode ? `Episode ${episode} Analysis` : "Game Analysis";
+    const meta = updated ? `AI-generated · ${updated}` : "AI-generated";
+    const paragraphs = commentary.split(/\n\n+/).filter(Boolean)
+      .map(p => `<p>${p.trim()}</p>`).join("");
+    commentaryEl.innerHTML = `
+      <div class="commentary-head">
+        <div class="commentary-title">${title}</div>
+        <div class="commentary-meta">${meta}</div>
+      </div>
+      <div class="commentary-body">${paragraphs}</div>
+    `;
+    commentaryEl.style.display = "";
+  } else {
+    commentaryEl.style.display = "none";
+  }
+}
+
+// Initial render.
+render();
+</script>
+</body>
+</html>

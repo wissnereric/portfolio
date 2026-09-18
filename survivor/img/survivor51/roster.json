@@ -1,0 +1,26 @@
+{
+  "season": "Survivor 51",
+  "castaways": [
+    { "name": "Aaliyah Puglia", "photo": "./img/survivor51/aaliyah-puglia.jpg" },
+    { "name": "Alexis Levine", "photo": "./img/survivor51/alexis-levine.jpg" },
+    { "name": "Ana Sani", "photo": "./img/survivor51/ana-sani.jpg" },
+    { "name": "Angelica \"Jelly\" Loblack", "photo": "./img/survivor51/angelica-jelly-loblack.jpg" },
+    { "name": "Brady Booker", "photo": "./img/survivor51/brady-booker.jpg" },
+    { "name": "Carter Krull", "photo": "./img/survivor51/carter-krull.jpg" },
+    { "name": "Cristian Chavez", "photo": "./img/survivor51/cristian-chavez.jpg" },
+    { "name": "Danny Kilby", "photo": "./img/survivor51/danny-kilby.jpg" },
+    { "name": "Devin Way", "photo": "./img/survivor51/devin-way.jpg" },
+    { "name": "Eric Macksoud", "photo": "./img/survivor51/eric-macksoud.jpg" },
+    { "name": "Jenna Doore", "photo": "./img/survivor51/jenna-doore.jpg" },
+    { "name": "Kristin Flickinger", "photo": "./img/survivor51/kristin-flickinger.jpg" },
+    { "name": "Lewis Kelly", "photo": "./img/survivor51/lewis-kelly.jpg" },
+    { "name": "Linnea Capobianco", "photo": "./img/survivor51/linnea-capobianco.jpg" },
+    { "name": "Maggie Nestor", "photo": "./img/survivor51/maggie-nestor.jpg" },
+    { "name": "Mike Pinsky", "photo": "./img/survivor51/mike-pinsky.jpg" },
+    { "name": "Ori Jean-Charles", "photo": "./img/survivor51/ori-jean-charles.jpg" },
+    { "name": "Patt Cannaday", "photo": "./img/survivor51/patt-cannaday.jpg" },
+    { "name": "Rob Antonson", "photo": "./img/survivor51/rob-antonson.jpg" },
+    { "name": "Sharonda Cox", "photo": "./img/survivor51/sharonda-cox.jpg" },
+    { "name": "Thien An Nguyen", "photo": "./img/survivor51/thien-an-nguyen.jpg" }
+  ]
+}

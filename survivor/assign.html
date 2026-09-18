@@ -1,0 +1,357 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Survivor Draft Assignment Tool</title>
+  <style>
+    :root{
+      --bg:#0b1020;
+      --text:#e9ecf5;
+      --muted:#aab3d1;
+      --border:rgba(255,255,255,.12);
+      --good:#6ee7b7;
+      --warn:#fbbf24;
+      --bad:#fb7185;
+    }
+    *{ box-sizing:border-box; }
+    body{
+      margin:0;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      background: radial-gradient(1000px 600px at 20% 0%, #182458 0%, var(--bg) 60%);
+      color: var(--text);
+    }
+    header, main{ max-width: 1200px; margin: 0 auto; padding: 18px 16px; }
+    h1{ margin:0 0 6px; font-size: 20px; font-weight: 750; }
+    h2{ font-size: 14px; margin: 0 0 10px; color: var(--text); }
+    p.sub{ color: var(--muted); font-size: 13px; line-height: 1.5; margin: 0 0 14px; }
+    .card-box{
+      background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 14px 16px;
+      margin-bottom: 16px;
+    }
+    label{ font-size: 12px; color: var(--muted); display:block; margin-bottom: 6px; }
+    input[type="text"], textarea{
+      width: 100%;
+      background: rgba(0,0,0,.25);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      color: var(--text);
+      padding: 8px 10px;
+      font-size: 13px;
+      font-family: inherit;
+    }
+    textarea{ resize: vertical; min-height: 90px; }
+    .row{ display:flex; gap:10px; flex-wrap:wrap; align-items:flex-end; }
+    .row > div{ flex: 1; min-width: 220px; }
+    button{
+      background: rgba(255,255,255,.08);
+      color: var(--text);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 9px 14px;
+      cursor:pointer;
+      font-size: 13px;
+      white-space: nowrap;
+    }
+    button:hover{ background: rgba(255,255,255,.16); }
+    button.primary{ border-color: var(--good); color: var(--good); }
+    button.danger{ border-color: var(--bad); color: var(--bad); }
+    button:disabled{ opacity:.4; cursor:not-allowed; }
+    .status{ font-size:12px; color: var(--muted); margin-top:8px; }
+
+    .board{ display:grid; grid-template-columns: 1fr 260px; gap: 16px; align-items:start; }
+    @media (max-width: 860px){ .board{ grid-template-columns: 1fr; } }
+
+    .pool{
+      display:grid;
+      grid-template-columns: repeat(auto-fill, minmax(96px, 1fr));
+      gap: 10px;
+    }
+    .pcard{
+      background: rgba(0,0,0,.2);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 8px;
+      text-align:center;
+      cursor:pointer;
+      transition: transform .08s ease, border-color .08s ease;
+    }
+    .pcard:hover{ border-color: var(--good); transform: translateY(-2px); }
+    .pcard img{
+      width:100%; aspect-ratio:1; object-fit:cover; border-radius:8px; display:block; margin-bottom:6px;
+      background: rgba(255,255,255,.06);
+    }
+    .pcard .n{ font-size:11px; font-weight:650; line-height:1.2; }
+
+    .owners{ display:flex; flex-direction:column; gap:10px; }
+    .ownerBox{
+      background: rgba(0,0,0,.2);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 10px;
+    }
+    .ownerBox.active{ border-color: var(--good); box-shadow: 0 0 0 1px var(--good) inset; }
+    .ownerBox .head{ display:flex; justify-content:space-between; align-items:center; cursor:pointer; }
+    .ownerBox .name{ font-weight:750; font-size:13px; }
+    .ownerBox .count{ font-size:11px; color: var(--muted); }
+    .ownerBox .picks{ margin-top:8px; display:flex; flex-direction:column; gap:6px; }
+    .pick{
+      display:flex; align-items:center; gap:8px;
+      background: rgba(255,255,255,.04);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 5px 7px;
+      font-size: 12px;
+    }
+    .pick img{ width:26px; height:26px; border-radius:6px; object-fit:cover; }
+    .pick span{ flex:1; }
+    .pick button{ padding: 2px 7px; font-size: 11px; border-radius:6px; }
+
+    textarea#output{ min-height: 260px; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 12px; white-space: pre; }
+  </style>
+</head>
+<body>
+<header>
+  <h1>Survivor Draft Assignment Tool</h1>
+  <p class="sub">
+    Click an owner to make them active, then click castaways in the pool below to draft them onto that owner's team.
+    When you're done, generate the <code>teams</code> array and paste it into <code>index.html</code> (or <code>index_Brittany.html</code>) in place of the existing <code>teams: [...]</code> block.
+    Your progress is saved automatically in this browser (localStorage) so you can leave and come back.
+  </p>
+
+  <div class="card-box">
+    <div class="row">
+      <div>
+        <label for="rosterUrl">Roster file (castaway pool + photos)</label>
+        <input type="text" id="rosterUrl" value="./img/survivor51/roster.json" />
+      </div>
+      <div style="flex:0 0 auto;">
+        <button id="loadRoster" class="primary">Load roster</button>
+      </div>
+    </div>
+    <div class="status" id="rosterStatus"></div>
+  </div>
+
+  <div class="card-box">
+    <label for="ownerNames">Owner names (one per line — edit anytime, existing picks are kept by name)</label>
+    <textarea id="ownerNames">Gina
+Erin
+Eric
+Mike</textarea>
+    <div class="row" style="margin-top:10px;">
+      <div style="flex:0 0 auto;"><button id="setOwners" class="primary">Set owners</button></div>
+      <div style="flex:0 0 auto;"><button id="resetAll" class="danger">Reset draft</button></div>
+    </div>
+  </div>
+</header>
+
+<main>
+  <div class="board">
+    <div class="card-box">
+      <h2>Available castaways (<span id="poolCount">0</span> left)</h2>
+      <div class="pool" id="pool"></div>
+    </div>
+
+    <div class="owners" id="owners"></div>
+  </div>
+
+  <div class="card-box">
+    <h2>Generated <code>teams</code> array</h2>
+    <div class="row" style="margin-bottom:10px;">
+      <div style="flex:0 0 auto;"><button id="generate" class="primary">Generate</button></div>
+      <div style="flex:0 0 auto;"><button id="copy">Copy to clipboard</button></div>
+    </div>
+    <textarea id="output" readonly placeholder="Click Generate once your draft is complete..."></textarea>
+  </div>
+</main>
+
+<script>
+const STORAGE_KEY = "survivorDraftTool.v1";
+
+let roster = [];      // [{name, photo}]
+let owners = [];      // [{name, picks: [{name, photo}]}]
+let activeOwnerIdx = 0;
+
+function saveState(){
+  try{
+    localStorage.setItem(STORAGE_KEY, JSON.stringify({
+      rosterUrl: document.getElementById("rosterUrl").value,
+      ownerNamesRaw: document.getElementById("ownerNames").value,
+      owners,
+      activeOwnerIdx
+    }));
+  }catch{}
+}
+
+function loadState(){
+  try{
+    const raw = localStorage.getItem(STORAGE_KEY);
+    if(!raw) return null;
+    return JSON.parse(raw);
+  }catch{ return null; }
+}
+
+function draftedNames(){
+  const s = new Set();
+  owners.forEach(o => o.picks.forEach(p => s.add(p.name)));
+  return s;
+}
+
+function renderPool(){
+  const pool = document.getElementById("pool");
+  const drafted = draftedNames();
+  const available = roster.filter(c => !drafted.has(c.name));
+  document.getElementById("poolCount").textContent = available.length;
+
+  pool.innerHTML = "";
+  available.forEach(c => {
+    const el = document.createElement("div");
+    el.className = "pcard";
+    el.title = owners.length ? `Draft to ${owners[activeOwnerIdx]?.name ?? "…"}` : "Set owners first";
+    el.innerHTML = `<img src="${c.photo}" alt="${c.name}" loading="lazy" /><div class="n">${c.name}</div>`;
+    el.addEventListener("click", () => draftPick(c));
+    pool.appendChild(el);
+  });
+}
+
+function draftPick(castaway){
+  if(!owners.length){ alert("Set owner names first."); return; }
+  owners[activeOwnerIdx].picks.push({ name: castaway.name, photo: castaway.photo, eliminatedWeek: null });
+  saveState();
+  renderAll();
+}
+
+function undoPick(ownerIdx, pickIdx){
+  owners[ownerIdx].picks.splice(pickIdx, 1);
+  saveState();
+  renderAll();
+}
+
+function setActiveOwner(idx){
+  activeOwnerIdx = idx;
+  saveState();
+  renderAll();
+}
+
+function renderOwners(){
+  const wrap = document.getElementById("owners");
+  wrap.innerHTML = "";
+  owners.forEach((o, idx) => {
+    const box = document.createElement("div");
+    box.className = "ownerBox" + (idx === activeOwnerIdx ? " active" : "");
+    box.innerHTML = `
+      <div class="head">
+        <div class="name">${o.name}</div>
+        <div class="count">${o.picks.length} pick${o.picks.length === 1 ? "" : "s"}</div>
+      </div>
+      <div class="picks"></div>
+    `;
+    box.querySelector(".head").addEventListener("click", () => setActiveOwner(idx));
+
+    const picksEl = box.querySelector(".picks");
+    o.picks.forEach((p, pIdx) => {
+      const row = document.createElement("div");
+      row.className = "pick";
+      row.innerHTML = `<img src="${p.photo}" alt="" /><span>${p.name}</span>`;
+      const rm = document.createElement("button");
+      rm.textContent = "✕";
+      rm.addEventListener("click", (e) => { e.stopPropagation(); undoPick(idx, pIdx); });
+      row.appendChild(rm);
+      picksEl.appendChild(row);
+    });
+
+    wrap.appendChild(box);
+  });
+}
+
+function renderAll(){
+  renderOwners();
+  renderPool();
+}
+
+async function loadRoster(){
+  const url = document.getElementById("rosterUrl").value.trim();
+  const statusEl = document.getElementById("rosterStatus");
+  try{
+    const res = await fetch(url, { cache: "no-store" });
+    if(!res.ok) throw new Error("HTTP " + res.status);
+    const json = await res.json();
+    roster = json.castaways || [];
+    statusEl.textContent = `Loaded ${roster.length} castaways from ${url}${json.season ? " (" + json.season + ")" : ""}.`;
+    statusEl.style.color = "var(--good)";
+    saveState();
+    renderAll();
+  }catch(err){
+    statusEl.textContent = `Failed to load roster from ${url}: ${err.message}`;
+    statusEl.style.color = "var(--bad)";
+  }
+}
+
+function applyOwnerNames(){
+  const names = document.getElementById("ownerNames").value
+    .split("\n").map(s => s.trim()).filter(Boolean);
+
+  // Keep existing picks for owners whose name is unchanged; new names start empty.
+  const byName = new Map(owners.map(o => [o.name, o]));
+  owners = names.map(n => byName.get(n) || { name: n, picks: [] });
+  if(activeOwnerIdx >= owners.length) activeOwnerIdx = 0;
+  saveState();
+  renderAll();
+}
+
+function resetAll(){
+  if(!confirm("Clear all drafted picks? This cannot be undone.")) return;
+  owners = owners.map(o => ({ name: o.name, picks: [] }));
+  activeOwnerIdx = 0;
+  saveState();
+  renderAll();
+}
+
+function generateOutput(){
+  const lines = [];
+  lines.push("teams: [");
+  owners.forEach((o, i) => {
+    lines.push("  {");
+    lines.push(`    owner: ${JSON.stringify(o.name)},`);
+    lines.push("    picks: [");
+    o.picks.forEach((p, j) => {
+      const comma = j < o.picks.length - 1 ? "," : "";
+      lines.push(`      { name: ${JSON.stringify(p.name)}, photo: ${JSON.stringify(p.photo)}, eliminatedWeek: null }${comma}`);
+    });
+    lines.push("    ]");
+    lines.push(`  }${i < owners.length - 1 ? "," : ""}`);
+  });
+  lines.push("]");
+  document.getElementById("output").value = lines.join("\n");
+}
+
+document.getElementById("loadRoster").addEventListener("click", loadRoster);
+document.getElementById("setOwners").addEventListener("click", applyOwnerNames);
+document.getElementById("resetAll").addEventListener("click", resetAll);
+document.getElementById("generate").addEventListener("click", generateOutput);
+document.getElementById("copy").addEventListener("click", () => {
+  const out = document.getElementById("output");
+  out.select();
+  navigator.clipboard?.writeText(out.value).catch(() => document.execCommand("copy"));
+});
+
+// Restore saved state, or bootstrap fresh.
+(function init(){
+  const saved = loadState();
+  if(saved){
+    document.getElementById("rosterUrl").value = saved.rosterUrl ?? document.getElementById("rosterUrl").value;
+    document.getElementById("ownerNames").value = saved.ownerNamesRaw ?? document.getElementById("ownerNames").value;
+    owners = saved.owners || [];
+    activeOwnerIdx = saved.activeOwnerIdx || 0;
+  }
+  loadRoster().then(() => {
+    if(!owners.length) applyOwnerNames();
+    else renderAll();
+  });
+})();
+</script>
+</body>
+</html>

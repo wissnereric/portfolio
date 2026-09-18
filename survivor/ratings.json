@@ -1,128 +1,29 @@
 {
-  "updated": "2026-06-04",
-  "source": "Claude API - web search synthesis",
+  "updated": "2026-09-18",
+  "source": "Preseason placeholder — no episodes aired yet",
   "players": {
-    "Angelina Keeley": {
-      "rating": 19,
-      "status": "OUT",
-      "eliminatedWeek": 5
-    },
-    "Aubry Bracco": {
-      "rating": 1,
-      "status": "IN",
-      "eliminatedWeek": null
-    },
-    "Benjamin \"Coach\" Wade": {
-      "rating": 12,
-      "status": "OUT",
-      "eliminatedWeek": 8
-    },
-    "Charlie Davis": {
-      "rating": 18,
-      "status": "OUT",
-      "eliminatedWeek": 5
-    },
-    "Chrissy Hofbeck": {
-      "rating": 13,
-      "status": "OUT",
-      "eliminatedWeek": 8
-    },
-    "Christian Hubicki": {
-      "rating": 11,
-      "status": "OUT",
-      "eliminatedWeek": 9
-    },
-    "Cirie Fields": {
-      "rating": 6,
-      "status": "OUT",
-      "eliminatedWeek": 12
-    },
-    "Colby Donaldson": {
-      "rating": 15,
-      "status": "OUT",
-      "eliminatedWeek": 6
-    },
-    "Dee Valladares": {
-      "rating": 14,
-      "status": "OUT",
-      "eliminatedWeek": 7
-    },
-    "Emily Flippen": {
-      "rating": 9,
-      "status": "OUT",
-      "eliminatedWeek": 11
-    },
-    "Genevieve Mushaluk": {
-      "rating": 16,
-      "status": "OUT",
-      "eliminatedWeek": 6
-    },
-    "Jenna Lewis-Dougherty": {
-      "rating": 24,
-      "status": "OUT",
-      "eliminatedWeek": 1
-    },
-    "Joe Hunter": {
-      "rating": 3,
-      "status": "IN",
-      "eliminatedWeek": null
-    },
-    "Jonathan Young": {
-      "rating": 2,
-      "status": "IN",
-      "eliminatedWeek": null
-    },
-    "Kamilla Karthigesu": {
-      "rating": 17,
-      "status": "OUT",
-      "eliminatedWeek": 6
-    },
-    "Kyle Fraser": {
-      "rating": 23,
-      "status": "MED",
-      "eliminatedWeek": 1
-    },
-    "Mike White": {
-      "rating": 20,
-      "status": "OUT",
-      "eliminatedWeek": 4
-    },
-    "Ozzy Lusth": {
-      "rating": 8,
-      "status": "OUT",
-      "eliminatedWeek": 11
-    },
-    "Q Burdette": {
-      "rating": 21,
-      "status": "OUT",
-      "eliminatedWeek": 3
-    },
-    "Rick Devens": {
-      "rating": 7,
-      "status": "OUT",
-      "eliminatedWeek": 12
-    },
-    "Rizo Velovic": {
-      "rating": 4,
-      "status": "OUT",
-      "eliminatedWeek": 13
-    },
-    "Savannah Louie": {
-      "rating": 22,
-      "status": "OUT",
-      "eliminatedWeek": 2
-    },
-    "Stephenie LaGrossa Kendrick": {
-      "rating": 10,
-      "status": "OUT",
-      "eliminatedWeek": 10
-    },
-    "Tiffany Ervin": {
-      "rating": 5,
-      "status": "OUT",
-      "eliminatedWeek": 13
-    }
+    "Aaliyah Puglia": { "rating": 1, "status": "IN", "eliminatedWeek": null },
+    "Alexis Levine": { "rating": 2, "status": "IN", "eliminatedWeek": null },
+    "Ana Sani": { "rating": 3, "status": "IN", "eliminatedWeek": null },
+    "Angelica \"Jelly\" Loblack": { "rating": 4, "status": "IN", "eliminatedWeek": null },
+    "Brady Booker": { "rating": 5, "status": "IN", "eliminatedWeek": null },
+    "Carter Krull": { "rating": 6, "status": "IN", "eliminatedWeek": null },
+    "Cristian Chavez": { "rating": 7, "status": "IN", "eliminatedWeek": null },
+    "Danny Kilby": { "rating": 8, "status": "IN", "eliminatedWeek": null },
+    "Devin Way": { "rating": 9, "status": "IN", "eliminatedWeek": null },
+    "Eric Macksoud": { "rating": 10, "status": "IN", "eliminatedWeek": null },
+    "Jenna Doore": { "rating": 11, "status": "IN", "eliminatedWeek": null },
+    "Kristin Flickinger": { "rating": 12, "status": "IN", "eliminatedWeek": null },
+    "Lewis Kelly": { "rating": 13, "status": "IN", "eliminatedWeek": null },
+    "Linnea Capobianco": { "rating": 14, "status": "IN", "eliminatedWeek": null },
+    "Maggie Nestor": { "rating": 15, "status": "IN", "eliminatedWeek": null },
+    "Mike Pinsky": { "rating": 16, "status": "IN", "eliminatedWeek": null },
+    "Ori Jean-Charles": { "rating": 17, "status": "IN", "eliminatedWeek": null },
+    "Patt Cannaday": { "rating": 18, "status": "IN", "eliminatedWeek": null },
+    "Rob Antonson": { "rating": 19, "status": "IN", "eliminatedWeek": null },
+    "Sharonda Cox": { "rating": 20, "status": "IN", "eliminatedWeek": null },
+    "Thien An Nguyen": { "rating": 21, "status": "IN", "eliminatedWeek": null }
   },
-  "episode": 13,
-  "commentary": "Episode 13, titled 'Reverse the Curse,' served as the three-hour live season finale of Survivor 50, and it delivered a decisive \u2014 if somewhat predictable \u2014 conclusion to the season. Heading in, Tiffany Ervin was the odd one out after being the sole vote to keep Cirie Fields, leaving her with essentially no path forward unless she won every remaining immunity challenge. Jonathan Young narrowly defeated Tiffany at the Final 5 immunity challenge in what was described as one of the closest finishes in Survivor history, coming down to a single puzzle piece. With immunity secured, the core four of Aubry, Joe, Jonathan, and Rizo sent Tiffany to the jury. The subsequent Final 4 immunity challenge was the legendary Simmotion challenge, which Aubry won \u2014 the one challenge she had specifically practiced before filming \u2014 and with that win she seized full control of the endgame. She chose to take Joe to the Final 3, sending Jonathan and Rizo into a fire-making battle that Jonathan won, eliminating Rizo and securing his own spot in the Final Tribal Council.\n\nAt the Final Tribal Council, the jury's sentiments broke largely along the lines that had been telegraphed all season. Aubry's narrative as a four-time player who had been 'robbed' in prior seasons resonated powerfully, and key jury members including Cirie, Ozzy, Rick, Christian, Dee, Emily, Tiffany, and Rizo all cast their votes for her. Jonathan mounted a solid performance and claimed credit for several key votes, but critics noted that his failure to build deep social bonds cost him dearly \u2014 ultimately receiving only three votes from Stephenie, Chrissy, and Coach. Joe received zero jury votes, with Cirie's pointed observation about the 'Joe-tation' \u2014 the idea that the entire jury had to babysit Joe through votes \u2014 proving impossible for him to overcome at Final Tribal.\n\nAubry Bracco is therefore ranked first: she won the critical final immunity challenge when she needed it most, made the correct strategic decision in taking Joe over Rizo to the finals, and delivered a compelling jury performance that resulted in an 8-3 landslide victory and the $2 million prize. Jonathan Young ranks second; his challenge performance was strong and he demonstrated genuine strategic growth from his Season 42 run, but his inability to forge the deep jury relationships that Aubry cultivated ultimately relegated him to runner-up status with a minority of jury votes. Joe Hunter ranks third: despite being a physical presence and a loyal ally throughout the game, he was widely perceived as a goat carried through votes by others, earned zero jury votes, and was explicitly described by jurors as a player who needed to be managed rather than one who drove the game forward."
+  "episode": 0,
+  "commentary": ""
 }
