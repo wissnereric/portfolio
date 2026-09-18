@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Survivor 50 Contest Tracker</title>
+  <title>Survivor 51 Contest Tracker</title>
   <style>
     :root{
       --bg:#0b1020;
@@ -259,15 +259,15 @@
 <body>
 <header>
   <h1>Survivor Contest Tracker</h1>
-  <div class=”sub”>
+  <div class="sub">
     Rankings are updated automatically every Thursday at 11 PM UTC via a GitHub Actions workflow. It calls the Claude API (claude-sonnet-4-6) with live web search, which synthesizes the week&rsquo;s episode recaps and Survivor analysis, then commits updated rankings and commentary directly to this site.
   </div>
-  <div class=”sub” style=”margin-top:6px;”>
-    For transparency, the prompt given to Claude is: <em>&ldquo;It is after Episode N of Survivor 50. Search for recaps and analysis published in the past week. Based on that research, rank all remaining active players from 1 (best positioned to win) to N (worst positioned), considering advantages, jury relationships, alliance standing, and recent challenge and strategic performance. Return rankings plus a 2&ndash;3 paragraph plain-text analysis of the episode and current game state.&rdquo;</em>
+  <div class="sub" style="margin-top:6px;">
+    For transparency, the prompt given to Claude is: <em>&ldquo;It is after Episode N of Survivor 51. Search for recaps and analysis published in the past week. Based on that research, rank all remaining active players from 1 (best positioned to win) to N (worst positioned), considering advantages, jury relationships, alliance standing, and recent challenge and strategic performance. Return rankings plus a 2&ndash;3 paragraph plain-text analysis of the episode and current game state.&rdquo;</em>
   </div>
 
-  <div class=”toolbar”>
-    <div class=”pill”>Scoring: <b>Win probability</b> (active players, 1/√rank method)</div>
+  <div class="toolbar">
+    <div class="pill">Scoring: <b>Win probability</b> (active players, 1/√rank method)</div>
   </div>
 </header>
 
@@ -289,81 +289,27 @@
  * - You can keep snuffed state as a browser toggle (localStorage) OR hard-code eliminatedWeek for permanence.  
  */
 const DATA = {
-  seasonLabel: "Survivor 50",
+  seasonLabel: "Survivor 51",
   // Optional: If set, rankings are fetched from this URL as JSON: { "Player Name": 92, "Another Player": 75, ... }
   rankingsUrl: "./ratings.json",
 
-  // rankings: {
-  //   "Charlie Davis": 7.4,
-  //   "Aubry Bracco": 7.4,
-  //   "Rick Devens": 6.7,
-  //   "Cirie Fields": 6.3,
-  //   "Stephenie LaGrossa Kendrick": 5.4,
-  //   "Joe Hunter": 5.4,
-  //   'Benjamin "Coach" Wade': 4.8,
-  //   "Ozzy Lusth": 4.8,
-  //   "Colby Donaldson": 4.8,
-  //   "Jonathan Young": 4.8,
-  //   "Rizo Velovic": 4.3,
-  //   "Kamilla Karthigesu": 4.3,
-  //   "Genevieve Mushaluk": 3.8,
-  //   "Christian Hubicki": 3.8,
-  //   "Angelina Keeley": 3.2,
-  //   "Chrissy Hofbeck": 3.2,
-  //   "Jenna Lewis-Dougherty": 3.2,
-  //   "Tiffany Ervin": 2.8,
-  //   "Emily Flippen": 2.8,
-  //   "Savannah Louie": 2.8,
-  //   "Dee Valladares": 2.4,
-  //   "Kyle Fraser": 2.4,
-  //   "Mike White": 1.0,
-  //   "Q Burdette": 1.0
-  // },
-
+  // Picks not made yet — run assign.html after the draft and paste its output here.
   teams: [
   {
     owner: "Gina",
-    picks: [
-      { name: "Ozzy Lusth", photo: "./img/survivor50/88857583007-survivor-50-ozzy-lusth-s-1.webp", eliminatedWeek: null },
-      { name: "Mike White", photo: "./img/survivor50/88857589007-survivor-50-mike-white-s-1.webp", eliminatedWeek: null },
-      { name: "Savannah Louie", photo: "./img/survivor50/88857596007-survivor-50-savannah-louie-s-1.webp", eliminatedWeek: null },
-      { name: "Rizo Velovic", photo: "./img/survivor50/88857597007-survivor-50-rizo-velovic-s-1.webp", eliminatedWeek: null },
-      { name: "Jenna Lewis-Dougherty", photo: "./img/survivor50/88857578007-survivor-50-jenna-lewis-dougherty-s-1.webp", eliminatedWeek: 1 },
-      { name: "Angelina Keeley", photo: "./img/survivor50/88857590007-survivor-50-angelina-keeley-s-1.webp", eliminatedWeek: null }
-    ]
+    picks: []
   },
   {
     owner: "Erin",
-    picks: [
-      { name: "Colby Donaldson", photo: "./img/survivor50/88857581007-survivor-50-colby-donaldson-s-1.webp", eliminatedWeek: null },
-      { name: "Kamilla Karthigesu", photo: "./img/survivor50/88857577007-survivor-50-kamilla-karthigesu-s-1.webp", eliminatedWeek: null },
-      { name: "Dee Valladares", photo: "./img/survivor50/88857575007-survivor-50-dee-valladares-s-1-c.webp", eliminatedWeek: null },
-      { name: "Jonathan Young", photo: "./img/survivor50/88857588007-survivor-50-jonathan-young-s-1.webp", eliminatedWeek: null },
-      { name: "Chrissy Hofbeck", photo: "./img/survivor50/88857579007-survivor-50-chrissy-hofbeck-s-1.webp", eliminatedWeek: null },
-      { name: "Tiffany Ervin", photo: "./img/survivor50/88857599007-survivor-50-tiffany-ervin-s-1.webp", eliminatedWeek: null }
-    ]
+    picks: []
   },
   {
     owner: "Eric",
-    picks: [
-      { name: "Aubry Bracco", photo: "./img/survivor50/88857587007-survivor-50-aubry-bracco-s-1.webp", eliminatedWeek: null },
-      { name: "Charlie Davis", photo: "./img/survivor50/88857585007-survivor-50-charlie-davis-s-1.webp", eliminatedWeek: null },
-      { name: "Genevieve Mushaluk", photo: "./img/survivor50/88857593007-survivor-50-genevieve-mushaluk-s-1.webp", eliminatedWeek: null },
-      { name: "Rick Devens", photo: "./img/survivor50/88857580007-survivor-50-rick-devens-s-1.webp", eliminatedWeek: null },
-      { name: "Emily Flippen", photo: "./img/survivor50/88857584007-survivor-50-emily-flippen-s-1.webp", eliminatedWeek: null },
-      { name: "Christian Hubicki", photo: "./img/survivor50/88857592007-survivor-50-christian-hubicki-s-1.webp", eliminatedWeek: null }
-    ]
+    picks: []
   },
   {
     owner: "Mike",
-    picks: [
-      { name: 'Benjamin "Coach" Wade', photo: "./img/survivor50/88857586007-survivor-50-benjamin-coach-wade-s-1.webp", eliminatedWeek: null },
-      { name: "Joe Hunter", photo: "./img/survivor50/88857576007-survivor-50-joe-hunter-s-1.webp", eliminatedWeek: null },
-      { name: "Stephenie LaGrossa Kendrick", photo: "./img/survivor50/88857598007-survivor-50-stephenie-la-grossa-kendrick-s-1.webp", eliminatedWeek: null },
-      { name: "Cirie Fields", photo: "./img/survivor50/88857591007-survivor-50-cirie-fields-s-1.webp", eliminatedWeek: null },
-      { name: "Kyle Fraser", photo: "./img/survivor50/88857594007-survivor-50-kyle-fraser-s-1-2.webp", eliminatedWeek: 1 },
-      { name: "Q Burdette", photo: "./img/survivor50/88857582007-survivor-50-q-burdette-s-1.webp", eliminatedWeek: null }
-    ]
+    picks: []
   }
 ]
 };
