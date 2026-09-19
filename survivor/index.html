@@ -294,22 +294,47 @@ const DATA = {
   rankingsUrl: "./ratings.json",
 
   // Picks not made yet — run assign.html after the draft and paste its output here.
-  teams: [
+
+teams: [
   {
     owner: "Gina",
-    picks: []
+    picks: [
+      { name: "Sharonda Cox", photo: "./img/survivor51/sharonda-cox.jpg", eliminatedWeek: null },
+      { name: "Ori Jean-Charles", photo: "./img/survivor51/ori-jean-charles.jpg", eliminatedWeek: null },
+      { name: "Angelica \"Jelly\" Loblack", photo: "./img/survivor51/angelica-jelly-loblack.jpg", eliminatedWeek: null },
+      { name: "Thien An Nguyen", photo: "./img/survivor51/thien-an-nguyen.jpg", eliminatedWeek: null },
+      { name: "Ana Sani", photo: "./img/survivor51/ana-sani.jpg", eliminatedWeek: null }
+    ]
   },
   {
     owner: "Erin",
-    picks: []
+    picks: [
+      { name: "Lewis Kelly", photo: "./img/survivor51/lewis-kelly.jpg", eliminatedWeek: null },
+      { name: "Kristin Flickinger", photo: "./img/survivor51/kristin-flickinger.jpg", eliminatedWeek: null },
+      { name: "Jenna Doore", photo: "./img/survivor51/jenna-doore.jpg", eliminatedWeek: null },
+      { name: "Eric Macksoud", photo: "./img/survivor51/eric-macksoud.jpg", eliminatedWeek: null },
+      { name: "Danny Kilby", photo: "./img/survivor51/danny-kilby.jpg", eliminatedWeek: null }
+    ]
   },
   {
     owner: "Eric",
-    picks: []
+    picks: [
+      { name: "Patt Cannaday", photo: "./img/survivor51/patt-cannaday.jpg", eliminatedWeek: null },
+      { name: "Maggie Nestor", photo: "./img/survivor51/maggie-nestor.jpg", eliminatedWeek: null },
+      { name: "Linnea Capobianco", photo: "./img/survivor51/linnea-capobianco.jpg", eliminatedWeek: null },
+      { name: "Alexis Levine", photo: "./img/survivor51/alexis-levine.jpg", eliminatedWeek: null },
+      { name: "Aaliyah Puglia", photo: "./img/survivor51/aaliyah-puglia.jpg", eliminatedWeek: null }
+    ]
   },
   {
     owner: "Mike",
-    picks: []
+    picks: [
+      { name: "Mike Pinsky", photo: "./img/survivor51/mike-pinsky.jpg", eliminatedWeek: null },
+      { name: "Rob Antonson", photo: "./img/survivor51/rob-antonson.jpg", eliminatedWeek: null },
+      { name: "Devin Way", photo: "./img/survivor51/devin-way.jpg", eliminatedWeek: null },
+      { name: "Brady Booker", photo: "./img/survivor51/brady-booker.jpg", eliminatedWeek: null },
+      { name: "Carter Krull", photo: "./img/survivor51/carter-krull.jpg", eliminatedWeek: null }
+    ]
   }
 ]
 };
@@ -497,8 +522,7 @@ async function render(){
           <div class="meta">${elimText}</div>
         </div>
         <div class="toggle">
-          ${isTop ? `<div class="rankBadge" style="border-color:var(--warn);color:var(--warn);">&#9733; Top Contender</div>` : ``}
-          <div class="rankBadge">${rankText}</div>
+          <div class="rankBadge"${isTop ? ` style="border-color:var(--warn);color:var(--warn);"` : ``}>${rankText}${isTop ? ` &#9733;` : ``}</div>
           ${!snuffed ? `<div class="rankBadge" style="margin-top:2px;">${contribText}</div>` : ``}
         </div>
       `;

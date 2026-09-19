@@ -463,8 +463,7 @@ async function render(){
           <div class="meta">${elimText}</div>
         </div>
         <div class="toggle">
-          ${isTop ? `<div class="rankBadge" style="border-color:var(--warn);color:var(--warn);">&#9733; Top Contender</div>` : ``}
-          <div class="rankBadge">${rankText}</div>
+          <div class="rankBadge"${isTop ? ` style="border-color:var(--warn);color:var(--warn);"` : ``}>${rankText}${isTop ? ` &#9733;` : ``}</div>
           ${!snuffed ? `<div class="rankBadge" style="margin-top:2px;">${contribText}</div>` : ``}
         </div>
       `;
