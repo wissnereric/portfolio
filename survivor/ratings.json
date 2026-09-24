@@ -1,29 +1,113 @@
 {
-  "updated": "2026-09-23",
-  "source": "Preseason placeholder — no episodes aired yet",
+  "updated": "2026-09-24",
+  "source": "Claude API - web search synthesis",
   "players": {
-    "Aaliyah Puglia": { "rating": 21, "status": "OUT", "eliminatedWeek": 1 },
-    "Alexis Levine": { "rating": 2, "status": "IN", "eliminatedWeek": null },
-    "Ana Sani": { "rating": 3, "status": "IN", "eliminatedWeek": null },
-    "Angelica \"Jelly\" Loblack": { "rating": 4, "status": "IN", "eliminatedWeek": null },
-    "Brady Booker": { "rating": 5, "status": "IN", "eliminatedWeek": null },
-    "Carter Krull": { "rating": 6, "status": "IN", "eliminatedWeek": null },
-    "Cristian Chavez": { "rating": 7, "status": "IN", "eliminatedWeek": null },
-    "Danny Kilby": { "rating": 8, "status": "IN", "eliminatedWeek": null },
-    "Devin Way": { "rating": 9, "status": "IN", "eliminatedWeek": null },
-    "Eric Macksoud": { "rating": 10, "status": "IN", "eliminatedWeek": null },
-    "Jenna Doore": { "rating": 11, "status": "IN", "eliminatedWeek": null },
-    "Kristin Flickinger": { "rating": 12, "status": "IN", "eliminatedWeek": null },
-    "Lewis Kelly": { "rating": 13, "status": "IN", "eliminatedWeek": null },
-    "Linnea Capobianco": { "rating": 14, "status": "IN", "eliminatedWeek": null },
-    "Maggie Nestor": { "rating": 15, "status": "IN", "eliminatedWeek": null },
-    "Mike Pinsky": { "rating": 16, "status": "IN", "eliminatedWeek": null },
-    "Ori Jean-Charles": { "rating": 17, "status": "IN", "eliminatedWeek": null },
-    "Patt Cannaday": { "rating": 18, "status": "IN", "eliminatedWeek": null },
-    "Rob Antonson": { "rating": 19, "status": "IN", "eliminatedWeek": null },
-    "Sharonda Cox": { "rating": 20, "status": "IN", "eliminatedWeek": null },
-    "Thien An Nguyen": { "rating": 1, "status": "IN", "eliminatedWeek": null }
+    "Aaliyah Puglia": {
+      "rating": 21,
+      "status": "OUT",
+      "eliminatedWeek": 1
+    },
+    "Alexis Levine": {
+      "rating": 8,
+      "status": "IN",
+      "eliminatedWeek": null
+    },
+    "Ana Sani": {
+      "rating": 2,
+      "status": "IN",
+      "eliminatedWeek": null
+    },
+    "Angelica \"Jelly\" Loblack": {
+      "rating": 17,
+      "status": "IN",
+      "eliminatedWeek": null
+    },
+    "Brady Booker": {
+      "rating": 12,
+      "status": "IN",
+      "eliminatedWeek": null
+    },
+    "Carter Krull": {
+      "rating": 3,
+      "status": "IN",
+      "eliminatedWeek": null
+    },
+    "Cristian Chavez": {
+      "rating": 14,
+      "status": "IN",
+      "eliminatedWeek": null
+    },
+    "Danny Kilby": {
+      "rating": 13,
+      "status": "IN",
+      "eliminatedWeek": null
+    },
+    "Devin Way": {
+      "rating": 18,
+      "status": "IN",
+      "eliminatedWeek": null
+    },
+    "Eric Macksoud": {
+      "rating": 19,
+      "status": "IN",
+      "eliminatedWeek": null
+    },
+    "Jenna Doore": {
+      "rating": 16,
+      "status": "IN",
+      "eliminatedWeek": null
+    },
+    "Kristin Flickinger": {
+      "rating": 6,
+      "status": "IN",
+      "eliminatedWeek": null
+    },
+    "Lewis Kelly": {
+      "rating": 20,
+      "status": "IN",
+      "eliminatedWeek": null
+    },
+    "Linnea Capobianco": {
+      "rating": 10,
+      "status": "IN",
+      "eliminatedWeek": null
+    },
+    "Maggie Nestor": {
+      "rating": 15,
+      "status": "IN",
+      "eliminatedWeek": null
+    },
+    "Mike Pinsky": {
+      "rating": 11,
+      "status": "IN",
+      "eliminatedWeek": null
+    },
+    "Ori Jean-Charles": {
+      "rating": 4,
+      "status": "IN",
+      "eliminatedWeek": null
+    },
+    "Patt Cannaday": {
+      "rating": 7,
+      "status": "IN",
+      "eliminatedWeek": null
+    },
+    "Rob Antonson": {
+      "rating": 1,
+      "status": "IN",
+      "eliminatedWeek": null
+    },
+    "Sharonda Cox": {
+      "rating": 5,
+      "status": "IN",
+      "eliminatedWeek": null
+    },
+    "Thien An Nguyen": {
+      "rating": 9,
+      "status": "IN",
+      "eliminatedWeek": null
+    }
   },
-  "episode": 0,
-  "commentary": ""
+  "episode": 1,
+  "commentary": "The Survivor 51 premiere established a clear dividing line between players already well-armed for the long game and those who overextended or got burned by the season's first chaotic Tribal. The single biggest winner of the episode is Rob Antonson, who quietly found the season's first hidden immunity idol \u2014 a clean, no-strings-attached classic idol good through the Final 5 \u2014 while also positioning himself at the center of a tight three with Carter Krull and Ana Sani on the winning Savu tribe. Rob managed to deflect early suspicion onto Eric Macksoud by framing Eric's absence from camp as idol hunting, a savvy early move that built his alliance and removed a potential rival's credibility simultaneously. Carter and Ana benefit directly from that core, with Carter described as fully bought into Rob and Ana deploying sharp social intelligence \u2014 using her voice-actor instincts to categorize and connect with tribemates \u2014 to slot neatly into the group as a trusted third. Ori Jean-Charles and Sharonda Cox round out Savu's social elite, having affirmed their cross-tribal Helicopter Alliance connection at camp and quietly building bonds without drawing heat; Sharonda notably pulled Kristin Flickinger into her orbit, giving the pair a promising sub-alliance. Kristin herself had a strong debut as the Savu tribe's resource negotiator, walking away with flint, machete, and pot \u2014 a tangible early win for her tribe that builds goodwill.\n\nOn the Toka side, the story of Episode 1 is Devin Way's aggressive overplay and Brady Booker's last-minute pivot that ultimately decided the vote. Devin came out of the gate as a self-appointed tribe leader, driving the Helicopter Alliance, leading morning exercises, and relentlessly pushing the narrative that Jenna was lying about her profession. While he has numbers \u2014 Jelly firmly in his corner and an existing bond with Brady \u2014 his transparency as a strategist is already a liability that several recaps flagged. Brady, by contrast, demonstrated adaptability: he flipped the vote from Jenna to Aaliyah at the Live Tribal after learning Aaliyah had targeted him, showing he can move quickly under pressure. That said, Brady's physically dominant challenge presence and his visible bromance with Devin make him a medium-term threat. Patt Cannaday emerged as a genuine social player, warning Jenna of her danger and forming a protective duo with her, which suggests strong relational instincts and challenge awareness. Jenna herself survived a near-elimination, but she enters Episode 2 with damaged early credibility and a reputation for being closed off \u2014 a stigma that rarely fades fast.\n\nThe most precarious positions belong to Devin, Jelly, Eric, and Lewis. Jelly voted with Devin for Aaliyah in a 6-2 losing minority, meaning she and Devin are the two players the rest of Toka now knows were on the wrong side of the vote \u2014 the Helicopter Alliance lost a member on night one and the survivors are exposed. Eric Macksoud's hyperactive social game on Savu has already irritated his tribemates, including his fellow Rhode Islander Rob, and he sits firmly on the bottom of that tribe. Lewis Kelly is perhaps the most unusual case: he arrives into Toka already behind on bonds after spending 30-plus hours alone on Exile Island, failed to win the immunity idol challenge, and now joins a tribe that has already solidified its pecking order without him. His entry point is uncertain and his social deficit is real, making him the most vulnerable new addition to the losing tribe despite his immunity from the first vote."
 }
