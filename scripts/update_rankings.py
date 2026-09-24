@@ -89,6 +89,8 @@ def main() -> None:
         f'"commentary": "2-3 paragraph plain-text analysis of the episode and current game state. '
         f'Cover the key strategic moves and why the top-ranked players are well-positioned. '
         f'No markdown, no bullet points — flowing prose only."}}. '
+        f'The "rankings" array must contain ONLY {{"name", "rank"}} objects — close it with "]" '
+        f'before adding "commentary" as a sibling key of "rankings", not as an array element. '
         f'Active players to rank: {active_names}. '
         f'Previous rankings for context — do not re-rank OUT or MED players: {previous_rankings}. '
         f'Do not include any text before or after the JSON object — your entire response must be valid JSON starting with {{.'
@@ -98,45 +100,69 @@ def main() -> None:
 
     print(f"\nQuerying {MODEL} with web search...")
 
-    response = client.messages.create(
-        model=MODEL,
-        max_tokens=2048,
-        # Cache the stable prefix for any same-episode re-runs.
-        messages=[
-            {
+    messages = [
+        {
+            "role": "user",
+            "content": [
+                {
+                    "type": "text",
+                    "text": prompt,
+                    # Cache the stable prefix for any same-episode re-runs.
+                    "cache_control": {"type": "ephemeral"},
+                }
+            ],
+        }
+    ]
+
+    max_attempts = 3
+    parsed = None
+    for attempt in range(1, max_attempts + 1):
+        response = client.messages.create(
+            model=MODEL,
+            max_tokens=2048,
+            messages=messages,
+            tools=[{"type": "web_search_20250305", "name": "web_search"}],
+        )
+
+        # The response may contain server_tool_use + tool_result blocks before the
+        # final text answer. Take the LAST text block.
+        text_content = next(
+            (block.text for block in reversed(response.content) if block.type == "text"),
+            None,
+        )
+
+        if not text_content:
+            print("ERROR: No text block in Claude response.", file=sys.stderr)
+            print("Response content types:", [b.type for b in response.content], file=sys.stderr)
+            sys.exit(1)
+
+        cleaned = extract_json_from_response(text_content)
+
+        try:
+            parsed = json.loads(cleaned)
+            break
+        except json.JSONDecodeError as exc:
+            print(f"WARNING (attempt {attempt}/{max_attempts}): Failed to parse JSON: {exc}", file=sys.stderr)
+            print(f"Raw text was:\n{text_content}", file=sys.stderr)
+            if attempt == max_attempts:
+                print("ERROR: Giving up after repeated invalid JSON responses.", file=sys.stderr)
+                sys.exit(1)
+            # Ask Claude to fix its own malformed JSON, reusing the same
+            # conversation (and web search results already gathered).
+            messages.append({"role": "assistant", "content": response.content})
+            messages.append({
                 "role": "user",
                 "content": [
                     {
                         "type": "text",
-                        "text": prompt,
-                        "cache_control": {"type": "ephemeral"},
+                        "text": (
+                            f"That response was not valid JSON: {exc}. "
+                            f"Return ONLY the corrected, complete, valid JSON object in the exact "
+                            f"same format as before — no explanation, no markdown."
+                        ),
                     }
                 ],
-            }
-        ],
-        tools=[{"type": "web_search_20250305", "name": "web_search"}],
-    )
-
-    # The response may contain server_tool_use + tool_result blocks before the
-    # final text answer. Take the LAST text block.
-    text_content = next(
-        (block.text for block in reversed(response.content) if block.type == "text"),
-        None,
-    )
-
-    if not text_content:
-        print("ERROR: No text block in Claude response.", file=sys.stderr)
-        print("Response content types:", [b.type for b in response.content], file=sys.stderr)
-        sys.exit(1)
-
-    cleaned = extract_json_from_response(text_content)
-
-    try:
-        parsed = json.loads(cleaned)
-    except json.JSONDecodeError as exc:
-        print(f"ERROR: Failed to parse JSON from response: {exc}", file=sys.stderr)
-        print(f"Raw text was:\n{text_content}", file=sys.stderr)
-        sys.exit(1)
+            })
 
     # Accept either the new {rankings, commentary} shape or the legacy bare array.
     if isinstance(parsed, list):
