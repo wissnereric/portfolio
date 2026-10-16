@@ -259,7 +259,7 @@
     Rankings are updated automatically every Thursday at 11 PM UTC via a GitHub Actions workflow. It calls the Claude API (claude-sonnet-4-6) with live web search, which synthesizes the week&rsquo;s episode recaps and Survivor analysis, then commits updated rankings and commentary directly to this site.
   </div>
   <div class="sub" style="margin-top:6px;">
-    For transparency, the prompt given to Claude is: <em>&ldquo;It is after Episode N of Survivor 51. Search for recaps and analysis published in the past week. Based on that research, rank all remaining active players from 1 (best positioned to win) to N (worst positioned), considering advantages, jury relationships, alliance standing, and recent challenge and strategic performance. Return rankings plus a 2&ndash;3 paragraph plain-text analysis of the episode and current game state.&rdquo;</em>
+    For transparency, the prompt given to Claude is: <em>&ldquo;It is after Episode N of Survivor 51. Search for recaps and analysis published in the past week. First, lock in the final placement of anyone who was voted out, evacuated, or quit (the first player out of 21 finishes 21st, the next 20th, and so on). Then rank all remaining active players from 1 (best positioned to win) to N (worst positioned), with no ties, considering advantages, jury relationships, alliance standing, and recent challenge and strategic performance. Return rankings plus a 2&ndash;3 paragraph plain-text analysis of the episode and current game state.&rdquo;</em>
   </div>
 
   <div class="toolbar">

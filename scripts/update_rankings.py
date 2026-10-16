@@ -78,16 +78,29 @@ def main() -> None:
     print(f"Episode to process: {episode_num}")
     print(f"Active players going in ({len(active_names)}): {', '.join(active_names)}")
 
+    total_players = len(players)
+    # Players already out hold places total_players down to (num_remaining + 1).
+    # Anyone leaving this episode takes the next places down from num_remaining.
+    num_remaining = len(active_names)
+
     prompt = (
         f'It is the week after Episode {episode_num} of Survivor 51 aired. '
         f'Search for recaps and analysis published in the past week. '
-        f'First, determine which currently-active players (if any) were voted out, '
-        f'medically evacuated, or quit during Episode {episode_num}. '
-        f'Then rank every player who is STILL ACTIVE after that episode from 1 (best positioned '
-        f'to win) to worst positioned, considering advantages, jury relationships, alliance '
-        f'standing, and recent challenge and strategic performance. '
+        f'Do this in two steps, in this order. '
+        f'STEP 1 — FINAL PLACEMENTS FOR ELIMINATED PLAYERS: Determine which currently-active players '
+        f'(if any) were voted out, medically evacuated, or quit during Episode {episode_num}. '
+        f'Once a player leaves the game, their final placement in the overall game is locked in and '
+        f'never changes. There are {total_players} castaways in total and {num_remaining} were still '
+        f'in the game going into this episode, so the first player to leave during this episode '
+        f'finishes in place {num_remaining}, the next in place {num_remaining - 1}, and so on. '
+        f'List eliminations in the order they left the game and give each its "place". '
+        f'STEP 2 — RANK THE REMAINING PLAYERS: Only after placements are assigned, rank every player '
+        f'who is STILL ACTIVE after that episode from 1 (best positioned to win) down to the number '
+        f'of players remaining, using each number exactly once with no ties, considering advantages, '
+        f'jury relationships, alliance standing, and recent challenge and strategic performance. '
+        f'An eliminated player must never appear in the rankings or hold a top rank. '
         f'Return ONLY valid JSON with no explanation and no markdown, in exactly this format: '
-        f'{{"eliminations": [{{"name": "PlayerName", "status": "OUT"}}, ...], '
+        f'{{"eliminations": [{{"name": "PlayerName", "status": "OUT", "place": {num_remaining}}}, ...], '
         f'"rankings": [{{"name": "PlayerName", "rank": 1}}, ...], '
         f'"commentary": "2-3 paragraph plain-text analysis of the episode and current game state. '
         f'Cover the key strategic moves and why the top-ranked players are well-positioned. '
@@ -99,8 +112,8 @@ def main() -> None:
         f'The "rankings" and "eliminations" arrays must contain ONLY the specified objects — close '
         f'each with "]" before adding sibling keys, never as an array element. '
         f'Active players going into this episode: {active_names}. '
-        f'Previous rankings and status for context — do not re-rank already-OUT/MED/QUIT players: '
-        f'{previous_rankings}. '
+        f'Previous rankings and status for context — players already OUT/MED/QUIT keep their '
+        f'existing final placement and must not be re-ranked: {previous_rankings}. '
         f'Do not include any text before or after the JSON object — your entire response must be valid JSON starting with {{.'
     )
 
@@ -199,8 +212,14 @@ def main() -> None:
         if name not in players:
             print(f"WARNING: Eliminated player '{name}' not found in ratings.json — skipping.", file=sys.stderr)
             continue
+        # Final placement is fixed by elimination order, regardless of what the
+        # model reports, so an eliminated player can never keep a top rank.
+        place = num_remaining - len(eliminated_names)
+        if item.get("place") not in (None, place):
+            print(f"WARNING: Model gave '{name}' place {item.get('place')}, using {place} from elimination order.", file=sys.stderr)
         players[name]["status"] = status
         players[name]["eliminatedWeek"] = episode_num
+        players[name]["rating"] = place
         eliminated_names.append(name)
 
     rank_map: dict[str, int] = {item["name"]: item["rank"] for item in new_rankings}
@@ -210,6 +229,9 @@ def main() -> None:
     for name in still_active_names:
         if name not in rank_map:
             print(f"WARNING: Active player '{name}' missing from rankings response.", file=sys.stderr)
+    active_ranks = [rank_map[n] for n in still_active_names if n in rank_map]
+    if sorted(active_ranks) != list(range(1, len(still_active_names) + 1)):
+        print(f"WARNING: Active rankings are not a clean 1..{len(still_active_names)} sequence: {sorted(active_ranks)}", file=sys.stderr)
 
     # Apply new ratings only to players still IN
     changes: list[str] = []
@@ -232,7 +254,7 @@ def main() -> None:
     print(f"\nEpisode {episode_num} update complete — {len(eliminated_names)} elimination(s), {len(changes)} ranking change(s):")
     if eliminated_names:
         for name in eliminated_names:
-            print(f"  OUT: {name} ({players[name]['status']}, week {episode_num})")
+            print(f"  OUT: {name} ({players[name]['status']}, week {episode_num}, final place {players[name]['rating']})")
     if changes:
         for line in changes:
             print(line)

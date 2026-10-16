@@ -57,7 +57,7 @@ Fetched at runtime by the app (`fetch('./ratings.json', { cache: "no-store" })`)
   "source": "description of ranking source",
   "players": {
     "Player Name": {
-      "rating": 3,           // ordinal rank — lower = better (1 = top contender)
+      "rating": 3,           // IN: ordinal rank, lower = better (1 = top contender); OUT/MED/QUIT: final placement (first out of 21 = 21)
       "status": "IN",        // "IN", "OUT", "MED", or "QUIT"
       "eliminatedWeek": null // null if still in, integer week number if out
     }
@@ -73,7 +73,7 @@ Fetched at runtime by the app (`fetch('./ratings.json', { cache: "no-store" })`)
 
 A player is considered eliminated ("snuffed") if `status` is OUT/MED/QUIT **or** `eliminatedWeek` is non-null. Both conditions are checked independently so either field alone is sufficient to mark a player out.
 
-**Updating weekly:** Edit `ratings.json` — update `rating` values for active players to reflect new rankings, set `status` and `eliminatedWeek` for newly eliminated players. Player names must match exactly (case-sensitive) between `ratings.json` and the `teams` array in `index.html`.
+**Updating weekly:** Edit `ratings.json` — first set `status`, `eliminatedWeek`, and a locked-in final-placement `rating` for newly eliminated players (they take the next places down from the number still in the game), then re-rank active players 1..N with no ties. Player names must match exactly (case-sensitive) between `ratings.json` and the `teams` array in `index.html`.
 
 ---
 
@@ -163,3 +163,4 @@ Generate this array with `assign.html` after a draft rather than hand-editing it
 | 2026-09-18 | Added `assign.html` — click-to-draft utility that generates a `teams` array from a roster file + owner list, to be pasted into `index.html`/`index_<Name>.html` after each draft |
 | 2026-09-18 | Updated `scripts/update_rankings.py` prompt/docstring from "Survivor 50" to "Survivor 51"; re-enabled the weekly GitHub Actions cron schedule (Thu 23:00 UTC) now that the season is starting |
 | 2026-09-18 | Fixed a pre-existing bug in `index.html`'s header: smart/curly quotes in `class="..."` attributes (from a prior paste) were breaking the `.sub`/`.toolbar`/`.pill` styling — replaced with straight quotes |
+| 2026-10-16 | Rankings prompt (`scripts/update_rankings.py` + header text in both pages) now assigns eliminated players their final placement first, then ranks remaining players 1..N with no ties; script enforces placement by elimination order. Backfilled `ratings.json`: Ana Sani → 20, Patt Cannaday → 18 (they had kept stale top ranks) |
