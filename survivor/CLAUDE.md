@@ -164,3 +164,4 @@ Generate this array with `assign.html` after a draft rather than hand-editing it
 | 2026-09-18 | Updated `scripts/update_rankings.py` prompt/docstring from "Survivor 50" to "Survivor 51"; re-enabled the weekly GitHub Actions cron schedule (Thu 23:00 UTC) now that the season is starting |
 | 2026-09-18 | Fixed a pre-existing bug in `index.html`'s header: smart/curly quotes in `class="..."` attributes (from a prior paste) were breaking the `.sub`/`.toolbar`/`.pill` styling — replaced with straight quotes |
 | 2026-10-16 | Rankings prompt (`scripts/update_rankings.py` + header text in both pages) now assigns eliminated players their final placement first, then ranks remaining players 1..N with no ties; script enforces placement by elimination order. Backfilled `ratings.json`: Ana Sani → 20, Patt Cannaday → 18 (they had kept stale top ranks) |
+| 2026-10-16 | Backfilled `ratings.json`: Jenna Doore (out Episode 4, processed by the old prompt) → final placement 17 |
