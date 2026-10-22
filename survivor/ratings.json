@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-15",
+  "updated": "2026-10-22",
   "source": "Claude API - web search synthesis",
   "players": {
     "Aaliyah Puglia": {
@@ -8,9 +8,9 @@
       "eliminatedWeek": 1
     },
     "Alexis Levine": {
-      "rating": 9,
-      "status": "IN",
-      "eliminatedWeek": null
+      "rating": 16,
+      "status": "OUT",
+      "eliminatedWeek": 5
     },
     "Ana Sani": {
       "rating": 20,
@@ -23,22 +23,22 @@
       "eliminatedWeek": null
     },
     "Brady Booker": {
-      "rating": 14,
+      "rating": 11,
       "status": "IN",
       "eliminatedWeek": null
     },
     "Carter Krull": {
-      "rating": 8,
+      "rating": 7,
       "status": "IN",
       "eliminatedWeek": null
     },
     "Cristian Chavez": {
-      "rating": 15,
+      "rating": 13,
       "status": "IN",
       "eliminatedWeek": null
     },
     "Danny Kilby": {
-      "rating": 7,
+      "rating": 5,
       "status": "IN",
       "eliminatedWeek": null
     },
@@ -48,7 +48,7 @@
       "eliminatedWeek": null
     },
     "Eric Macksoud": {
-      "rating": 13,
+      "rating": 12,
       "status": "IN",
       "eliminatedWeek": null
     },
@@ -63,22 +63,22 @@
       "eliminatedWeek": null
     },
     "Lewis Kelly": {
-      "rating": 12,
+      "rating": 8,
       "status": "IN",
       "eliminatedWeek": null
     },
     "Linnea Capobianco": {
-      "rating": 6,
-      "status": "IN",
-      "eliminatedWeek": null
+      "rating": 15,
+      "status": "OUT",
+      "eliminatedWeek": 5
     },
     "Maggie Nestor": {
-      "rating": 11,
+      "rating": 3,
       "status": "IN",
       "eliminatedWeek": null
     },
     "Mike Pinsky": {
-      "rating": 16,
+      "rating": 14,
       "status": "IN",
       "eliminatedWeek": null
     },
@@ -98,16 +98,16 @@
       "eliminatedWeek": 3
     },
     "Sharonda Cox": {
-      "rating": 5,
+      "rating": 9,
       "status": "IN",
       "eliminatedWeek": null
     },
     "Thien An Nguyen": {
-      "rating": 3,
+      "rating": 6,
       "status": "IN",
       "eliminatedWeek": null
     }
   },
-  "episode": 4,
-  "commentary": "Episode 4 of Survivor 51 delivered the season's first tribe swap, dissolving the original two-tribe setup into three: the new yellow Toka (Mike, Carter, Brady, Thien An, Maggie, Kristin), the new purple Savu (Devin, Jelly, Ori, Alexis, and Jenna), and the freshly minted red Dina tribe (Kilby, Lewis, Sharonda, Eric, Linnea, and Cristian), who were forced to start from scratch at a new beach. Dina won the combined reward and immunity challenge outright, while Toka finished second and also earned safety, leaving the five-person Savu tribe to face Tribal Council. On Savu, Alexis and Jenna emerged as the two targets, but the Helicopter Alliance trio of Devin, Jelly, and Ori \u2014 reunited for the first time since the opening days \u2014 coalesced around keeping Alexis, who had begun pitching a cross-tribe bond, over Jenna, who was viewed as untrustworthy given her prior alliance history against Devin and Jelly. Jenna was voted out 4-1, becoming the fifth player eliminated from the season.\n\nDevin sits at the top of the rankings because he is the gravitational center of the game's most durable alliance \u2014 the Helicopter Alliance with Jelly and Ori \u2014 which survived the swap intact and is now enriched by Alexis as a working number on new Savu. Jelly remains second because she holds a hidden immunity idol that not even Devin knows about, giving her a layer of independence and insurance no one else currently enjoys. Thien An, who orchestrated the Patt blindside and is already building cross-tribe trust with Carter on new Toka, holds third; she is viewed as a strong strategic mind but is not yet seen as a threat, a dangerous combination. Ori slides to fourth because the showmance energy with Jelly is raising his visibility, though his physical dominance and day-one alliance ties remain significant assets. Sharonda, Linnea, and the Dina majority round out the upper middle, having won the challenge and largely avoided drama, though the emerging Kilby-Eric \"Lover Boys\" bromance is already creating cracks that Sharonda and Linnea are actively monitoring.\n\nOn the vulnerable end, Mike Pinsky tumbles to last because, following Patt's exit, he is openly scrambling on new Toka \u2014 pitching himself to Maggie, Kristin, and Thien An as a free agent, only to be seen as erratic and untrustworthy by all of them. Brady is also deeply exposed, possessing only Mike as an apparent ally and carrying the emotional baggage of being blindsided. Cristian is low-profile on Dina but largely invisible in the strategic narrative. Lewis, while part of the Dina majority on paper, is noted as a potential odd man out if the Kilby-Eric bond deepens, and Eric's too-obvious alliance-making has flagged him as a liability to the original Savu members on his tribe. The game's swing points heading into Episode 5 will likely be whether Dina's numbers hold against the Lover Boys fracture and whether Mike or Brady can find a foothold on new Toka before the merge window opens."
+  "episode": 5,
+  "commentary": "Episode 5 of Survivor 51, titled 'Not Here to Get a Pedicure,' delivered one of the most dramatic nights of the season, with a double elimination affecting both Savu and Dina. Toka dominated the do-or-die immunity challenge thanks to Mike's throwing accuracy, sending both of the other tribes to Tribal Council. At Savu, the pivotal decision fell to Jelly, who was pulled between loyalty to Devin and solidarity with Alexis \u2014 another woman in a season where women have been leaving at an alarming rate. Jelly ultimately sided with the Helicopter Alliance, and Alexis was voted out 3-1, becoming the 16th-place finisher. The more seismic event unfolded at Dina, where Maggie \u2014 visiting as part of the Alliance Builder Extra Vote twist \u2014 gifted both of her extra votes to Lewis and Kilby, engineering a stunning cross-tribal assassination attempt targeting Linnea. The resulting 4-4 deadlock went to a revote, deadlocked again, and only resolved when Kilby's iron-willed willingness to draw rocks broke the resolve of Eric, Sharonda, and Cristian, who ultimately agreed to vote Linnea out rather than risk random elimination.\n\nDevin remains the top-ranked player, having successfully navigated the Savu vote and maintaining the Helicopter Alliance's control. Jelly holds strong at two, still in possession of a hidden immunity idol that no one else knows about, giving her enormous insurance heading toward a likely merge. Maggie rockets up to third \u2014 her cross-tribal move was extraordinary strategic play, demonstrating both intelligence and the courage to burn two advantages at once to protect her allies. Ori benefits from the Savu vote going his way and enters the merge window as a connected social player. Kilby surges into the top five after one of the gutsiest performances of the season, willing to draw rocks to protect Lewis and successfully pulling it off. Lewis himself is saved and grateful, making that bond durable, though his position is more reactive than proactive.\n\nThe game is now at 14 players with the merge looming. The Toka bloc of Carter (idol), Kristin, Thien An, Brady, Mike, and Maggie enters with numbers but will fracture quickly as individual games take over. Sharonda, Eric, and Cristian all flinched at rocks, which Kilby and Lewis will remember \u2014 that moment of weakness may define the early merge pecking order as the Dina remnants recalibrate. The season's stark gender disparity, with women accounting for six of the seven eliminations so far (with only Rob's quit breaking the streak), looms as a structural concern that could create counter-alliances or jury resentment shaping the endgame."
 }
