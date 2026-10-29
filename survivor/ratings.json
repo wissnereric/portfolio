@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-22",
+  "updated": "2026-10-29",
   "source": "Claude API - web search synthesis",
   "players": {
     "Aaliyah Puglia": {
@@ -18,22 +18,22 @@
       "eliminatedWeek": 2
     },
     "Angelica \"Jelly\" Loblack": {
-      "rating": 2,
+      "rating": 3,
       "status": "IN",
       "eliminatedWeek": null
     },
     "Brady Booker": {
-      "rating": 11,
+      "rating": 10,
       "status": "IN",
       "eliminatedWeek": null
     },
     "Carter Krull": {
-      "rating": 7,
+      "rating": 9,
       "status": "IN",
       "eliminatedWeek": null
     },
     "Cristian Chavez": {
-      "rating": 13,
+      "rating": 12,
       "status": "IN",
       "eliminatedWeek": null
     },
@@ -43,12 +43,12 @@
       "eliminatedWeek": null
     },
     "Devin Way": {
-      "rating": 1,
+      "rating": 2,
       "status": "IN",
       "eliminatedWeek": null
     },
     "Eric Macksoud": {
-      "rating": 12,
+      "rating": 13,
       "status": "IN",
       "eliminatedWeek": null
     },
@@ -58,7 +58,7 @@
       "eliminatedWeek": 4
     },
     "Kristin Flickinger": {
-      "rating": 10,
+      "rating": 1,
       "status": "IN",
       "eliminatedWeek": null
     },
@@ -73,19 +73,19 @@
       "eliminatedWeek": 5
     },
     "Maggie Nestor": {
-      "rating": 3,
+      "rating": 6,
       "status": "IN",
       "eliminatedWeek": null
     },
     "Mike Pinsky": {
-      "rating": 14,
+      "rating": 11,
       "status": "IN",
       "eliminatedWeek": null
     },
     "Ori Jean-Charles": {
-      "rating": 4,
-      "status": "IN",
-      "eliminatedWeek": null
+      "rating": 14,
+      "status": "OUT",
+      "eliminatedWeek": 6
     },
     "Patt Cannaday": {
       "rating": 18,
@@ -98,16 +98,16 @@
       "eliminatedWeek": 3
     },
     "Sharonda Cox": {
-      "rating": 9,
+      "rating": 4,
       "status": "IN",
       "eliminatedWeek": null
     },
     "Thien An Nguyen": {
-      "rating": 6,
+      "rating": 7,
       "status": "IN",
       "eliminatedWeek": null
     }
   },
-  "episode": 5,
-  "commentary": "Episode 5 of Survivor 51, titled 'Not Here to Get a Pedicure,' delivered one of the most dramatic nights of the season, with a double elimination affecting both Savu and Dina. Toka dominated the do-or-die immunity challenge thanks to Mike's throwing accuracy, sending both of the other tribes to Tribal Council. At Savu, the pivotal decision fell to Jelly, who was pulled between loyalty to Devin and solidarity with Alexis \u2014 another woman in a season where women have been leaving at an alarming rate. Jelly ultimately sided with the Helicopter Alliance, and Alexis was voted out 3-1, becoming the 16th-place finisher. The more seismic event unfolded at Dina, where Maggie \u2014 visiting as part of the Alliance Builder Extra Vote twist \u2014 gifted both of her extra votes to Lewis and Kilby, engineering a stunning cross-tribal assassination attempt targeting Linnea. The resulting 4-4 deadlock went to a revote, deadlocked again, and only resolved when Kilby's iron-willed willingness to draw rocks broke the resolve of Eric, Sharonda, and Cristian, who ultimately agreed to vote Linnea out rather than risk random elimination.\n\nDevin remains the top-ranked player, having successfully navigated the Savu vote and maintaining the Helicopter Alliance's control. Jelly holds strong at two, still in possession of a hidden immunity idol that no one else knows about, giving her enormous insurance heading toward a likely merge. Maggie rockets up to third \u2014 her cross-tribal move was extraordinary strategic play, demonstrating both intelligence and the courage to burn two advantages at once to protect her allies. Ori benefits from the Savu vote going his way and enters the merge window as a connected social player. Kilby surges into the top five after one of the gutsiest performances of the season, willing to draw rocks to protect Lewis and successfully pulling it off. Lewis himself is saved and grateful, making that bond durable, though his position is more reactive than proactive.\n\nThe game is now at 14 players with the merge looming. The Toka bloc of Carter (idol), Kristin, Thien An, Brady, Mike, and Maggie enters with numbers but will fracture quickly as individual games take over. Sharonda, Eric, and Cristian all flinched at rocks, which Kilby and Lewis will remember \u2014 that moment of weakness may define the early merge pecking order as the Dina remnants recalibrate. The season's stark gender disparity, with women accounting for six of the seven eliminations so far (with only Rob's quit breaking the streak), looms as a structural concern that could create counter-alliances or jury resentment shaping the endgame."
+  "episode": 6,
+  "commentary": "Episode 6 of Survivor 51, titled 'I Love Crying,' delivered one of the season's most emotionally loaded Tribal Councils, as Savu lost its third straight immunity challenge and the three remaining members of the Helicopter Alliance \u2014 Devin, Jelly, and Ori \u2014 were forced to turn on each other. Despite Ori's attempts to split Devin and Jelly by pitching each of them on voting the other out, Jelly remained committed to Devin as her number one. At Tribal, Jelly revealed her hidden immunity idol and declared she would not vote against Devin, effectively sealing Ori's fate. Ori played his Shot in the Dark to no avail \u2014 the scroll read 'Not Safe' \u2014 and he was voted out 2-0, finishing in 14th place. The episode's biggest strategic development, however, came at the Summit, where Kristin, Sharonda, and Ori were given a choice: two players return to camp with food, one stays on Exile Island. Kristin volunteered and earned a Tethered Idol, an advantage that can only be played on Ori or Sharonda \u2014 but crucially, if both are voted out, it converts into a fully unrestricted immunity idol she can play on anyone, including herself. With Ori now gone, only Sharonda's continued presence in the game stands between Kristin and a free-agent idol, making Kristin arguably the most advantaged player heading into the merge.\n\nKristin ascends to the top ranking this week on the strength of that Tethered Idol and her demonstrated social and survival skills \u2014 she started fire alone on Exile Island and is described as a clear fan favorite by Probst himself. Devin moves up to second: he survived a three-person Tribal with his Extra Vote intact, demonstrated loyalty that should earn him jury goodwill, and signaled a new, more aggressive era of his game ('Devin 2.0'). Jelly drops slightly to third despite holding an idol; her long stretch at Tribal-prone Savu has left her tribe-less and exposed heading into what looks like an imminent merge. Sharonda holds at fourth \u2014 she is an original Savu social hub, returned from the Summit with food and goodwill, and has allies across all three tribes, though she's now tethered to Kristin's idol in a way that makes her simultaneously protected and watched. Danny Kilby (Chaos Kilby) remains a top-five player for his bold strategic play at the last Tribal, though the fracture with Eric is a liability.\n\nOn the Dina tribe, the Eric-Kilby 'Loverboys' bromance is fractured after Kilby chose Lewis over Eric at the previous Tribal Council. Eric called it 'the biggest betrayal I have ever felt' and views Kilby as the most dangerous player in the game, which could either make Kilby a target or a shield. Cristian is quietly repositioning himself, building bonds with Kilby and Lewis outside his original Savu alliance, giving him optionality but reducing his reliability as an alliance member. Mike Pinsky on Toka attempted a deal with Kristin \u2014 offering to vote her way in exchange for her loyalty \u2014 but Kristin did not view him as a power player, and his social capital remains thin; he rises slightly only because Carter's idol is less publicly known. Eric sits at the bottom of the rankings: emotionally exposed, strategically betrayed, and without a clear path forward heading into what is likely a merge episode next week."
 }
