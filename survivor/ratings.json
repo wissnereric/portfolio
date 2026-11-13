@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-05",
+  "updated": "2026-11-13",
   "source": "Claude API - web search synthesis",
   "players": {
     "Aaliyah Puglia": {
@@ -18,7 +18,7 @@
       "eliminatedWeek": 2
     },
     "Angelica \"Jelly\" Loblack": {
-      "rating": 4,
+      "rating": 2,
       "status": "IN",
       "eliminatedWeek": null
     },
@@ -28,27 +28,27 @@
       "eliminatedWeek": 7
     },
     "Carter Krull": {
-      "rating": 11,
+      "rating": 5,
       "status": "IN",
       "eliminatedWeek": null
     },
     "Cristian Chavez": {
-      "rating": 12,
+      "rating": 9,
       "status": "IN",
       "eliminatedWeek": null
     },
     "Danny Kilby": {
-      "rating": 6,
-      "status": "IN",
-      "eliminatedWeek": null
+      "rating": 12,
+      "status": "OUT",
+      "eliminatedWeek": 8
     },
     "Devin Way": {
-      "rating": 3,
+      "rating": 1,
       "status": "IN",
       "eliminatedWeek": null
     },
     "Eric Macksoud": {
-      "rating": 9,
+      "rating": 8,
       "status": "IN",
       "eliminatedWeek": null
     },
@@ -58,12 +58,12 @@
       "eliminatedWeek": 4
     },
     "Kristin Flickinger": {
-      "rating": 1,
-      "status": "IN",
-      "eliminatedWeek": null
+      "rating": 11,
+      "status": "OUT",
+      "eliminatedWeek": 8
     },
     "Lewis Kelly": {
-      "rating": 10,
+      "rating": 3,
       "status": "IN",
       "eliminatedWeek": null
     },
@@ -73,12 +73,12 @@
       "eliminatedWeek": 5
     },
     "Maggie Nestor": {
-      "rating": 7,
+      "rating": 6,
       "status": "IN",
       "eliminatedWeek": null
     },
     "Mike Pinsky": {
-      "rating": 5,
+      "rating": 10,
       "status": "IN",
       "eliminatedWeek": null
     },
@@ -98,16 +98,16 @@
       "eliminatedWeek": 3
     },
     "Sharonda Cox": {
-      "rating": 2,
+      "rating": 4,
       "status": "IN",
       "eliminatedWeek": null
     },
     "Thien An Nguyen": {
-      "rating": 8,
+      "rating": 7,
       "status": "IN",
       "eliminatedWeek": null
     }
   },
-  "episode": 7,
-  "commentary": "Episode 7 of Survivor 51, titled 'The Girl at the Prom,' delivered the long-awaited merge as all 13 remaining castaways came together on a single tribe. The episode's defining strategic moment was the elimination of former WWE NXT wrestler Brady Booker in a 9-4 vote over Eric Macksoud, making Brady the first jury member of the season. Brady's downfall came from a combination of abrasive behavior at the merge feast \u2014 where his loud eating and constant talking irritated his new tribemates \u2014 and his failure to keep critical information quiet. His former ally Mike Pinsky, who had been on the outs at Toka, successfully flipped the numbers by aligning with the OG Savu players and the Helicopter Alliance, pulling together a coalition that steamrolled Brady out of the game. Mike also won the first individual immunity challenge, a difficult balancing competition, which both protected him and amplified his newfound influence at a pivotal moment.\n\nKristin Flickinger retains the top ranking after a masterfully executed trust-building play: she revealed the full details of her Tethered Idol to Sharonda Cox and physically handed the idol to Sharonda, declaring there would be no secrets between them. This bold gesture cemented their bond and kept the two tightly aligned heading into the post-merge. Sharonda rises to second as a result \u2014 she now holds real idol leverage, sits at the center of the Helicopter Alliance with Jelly and Devin, and has not fully disclosed to Kristin the breadth of her connections. Devin and Jelly remain dangerous as a duo stocked with real and fake advantages, and their Helicopter Alliance with Sharonda gives them a pathway to numbers, though their combined target is enormous. Mike Pinsky's immunity win and successful orchestration of the Brady boot rocket him up the rankings to fifth \u2014 he has rebuilt his game from the outs into a swing-vote power position.\n\nDanny Kilby and Maggie Nestor sit in the middle tier with solid alliance foundations but increasing exposure. Kilby has been repeatedly named as a threat by multiple players including Eric, and Brady's vote-out temporarily defuses his Toka bloc. Maggie showed awareness by flagging Kristin as the number one threat in the game, suggesting strategic sharpness, but her broader coalition took a hit when Brady left. Carter Krull, Lewis Kelly, and Thien An Nguyen all voted with the Brady minority alongside Lewis, leaving them on the wrong side of a 9-4 vote and in a tenuous position entering the next episode. Eric Macksoud, though he survived as the counter-target, was nearly voted out and remains a volatile figure whose game depends on others' willingness to keep him around as a number. Cristian Chavez stays near the bottom of the rankings, relatively invisible strategically despite being part of the winning coalition."
+  "episode": 8,
+  "commentary": "Episode 8 of Survivor 51, titled 'Load the Ark, Two by Two,' delivered one of the season's most chaotic tribals yet, as the returning Double Duo (Tied Destinies) twist forced players to pair up for both the immunity challenge and the vote. Lewis Kelly and Sharonda Cox won immunity together, guaranteeing their safety. At tribal council, Jelly Loblack played her hidden immunity idol to protect both herself and partner Devin Way, nullifying eight votes cast against them by virtually the entire rest of the tribe. Cristian Chavez then played his Shot in the Dark, which came back safe, neutralizing the one vote Jelly had cast for him and Carter. That left only Devin Way's single vote for Kristin and Kilby as the sole valid ballot \u2014 and with that one vote, both Danny 'Kilby' Kilby and Kristin Flickinger were eliminated together, becoming the first two jury members of the season after Brady Booker exited the jury to treat a thumb injury.\n\nDevin Way and Jelly Loblack now rocket to the top of the rankings after a masterful idol play that wiped out eight votes and exposed just how much of the tribe was targeting them. The fact that they burned an idol to survive is a double-edged sword, but their demonstrated ability to find and deploy advantages, combined with their tight partnership, makes them the most dangerous duo still in the game. Lewis Kelly climbs significantly \u2014 he won immunity, is a central node in the Salt of the Earth alliance, and has quietly positioned himself as a trusted vote without drawing much heat. Sharonda Cox also rises as an immunity winner who is playing a subtle double game, privately refusing to commit to the Devin-Jelly vote and warning Thien An not to let that leak.\n\nCarter Krull is in a strong spot as the architect of the Salt Alliance and the only player known to hold a hidden immunity idol (shared only with Cristian), but his visibility as a strategic ringleader could make him a target as the alliance fractures. Maggie Nestor and Thien An Nguyen remain solid mid-tier players with alliance footing but limited flashy moves. Eric Macksoud is damaged by his refusal to play Cristian's extra vote \u2014 a decision that expired the advantage and left him exposed as a strategic liability in some eyes. Cristian Chavez spent his Shot in the Dark and is now advantage-dry, though still trusted by Carter. Mike Pinsky drops to the bottom of the active rankings: despite his immunity win last episode, he continues to be the tribe's number one target, is the last to learn about plans, and has burned bridges with Maggie, Thien An, and others who openly distrust him."
 }
