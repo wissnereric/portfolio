@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-13",
+  "updated": "2026-11-20",
   "source": "Claude API - web search synthesis",
   "players": {
     "Aaliyah Puglia": {
@@ -28,12 +28,12 @@
       "eliminatedWeek": 7
     },
     "Carter Krull": {
-      "rating": 5,
+      "rating": 4,
       "status": "IN",
       "eliminatedWeek": null
     },
     "Cristian Chavez": {
-      "rating": 9,
+      "rating": 6,
       "status": "IN",
       "eliminatedWeek": null
     },
@@ -43,7 +43,7 @@
       "eliminatedWeek": 8
     },
     "Devin Way": {
-      "rating": 1,
+      "rating": 3,
       "status": "IN",
       "eliminatedWeek": null
     },
@@ -63,9 +63,9 @@
       "eliminatedWeek": 8
     },
     "Lewis Kelly": {
-      "rating": 3,
-      "status": "IN",
-      "eliminatedWeek": null
+      "rating": 10,
+      "status": "OUT",
+      "eliminatedWeek": 9
     },
     "Linnea Capobianco": {
       "rating": 15,
@@ -73,12 +73,12 @@
       "eliminatedWeek": 5
     },
     "Maggie Nestor": {
-      "rating": 6,
+      "rating": 5,
       "status": "IN",
       "eliminatedWeek": null
     },
     "Mike Pinsky": {
-      "rating": 10,
+      "rating": 9,
       "status": "IN",
       "eliminatedWeek": null
     },
@@ -98,7 +98,7 @@
       "eliminatedWeek": 3
     },
     "Sharonda Cox": {
-      "rating": 4,
+      "rating": 1,
       "status": "IN",
       "eliminatedWeek": null
     },
@@ -108,6 +108,6 @@
       "eliminatedWeek": null
     }
   },
-  "episode": 8,
-  "commentary": "Episode 8 of Survivor 51, titled 'Load the Ark, Two by Two,' delivered one of the season's most chaotic tribals yet, as the returning Double Duo (Tied Destinies) twist forced players to pair up for both the immunity challenge and the vote. Lewis Kelly and Sharonda Cox won immunity together, guaranteeing their safety. At tribal council, Jelly Loblack played her hidden immunity idol to protect both herself and partner Devin Way, nullifying eight votes cast against them by virtually the entire rest of the tribe. Cristian Chavez then played his Shot in the Dark, which came back safe, neutralizing the one vote Jelly had cast for him and Carter. That left only Devin Way's single vote for Kristin and Kilby as the sole valid ballot \u2014 and with that one vote, both Danny 'Kilby' Kilby and Kristin Flickinger were eliminated together, becoming the first two jury members of the season after Brady Booker exited the jury to treat a thumb injury.\n\nDevin Way and Jelly Loblack now rocket to the top of the rankings after a masterful idol play that wiped out eight votes and exposed just how much of the tribe was targeting them. The fact that they burned an idol to survive is a double-edged sword, but their demonstrated ability to find and deploy advantages, combined with their tight partnership, makes them the most dangerous duo still in the game. Lewis Kelly climbs significantly \u2014 he won immunity, is a central node in the Salt of the Earth alliance, and has quietly positioned himself as a trusted vote without drawing much heat. Sharonda Cox also rises as an immunity winner who is playing a subtle double game, privately refusing to commit to the Devin-Jelly vote and warning Thien An not to let that leak.\n\nCarter Krull is in a strong spot as the architect of the Salt Alliance and the only player known to hold a hidden immunity idol (shared only with Cristian), but his visibility as a strategic ringleader could make him a target as the alliance fractures. Maggie Nestor and Thien An Nguyen remain solid mid-tier players with alliance footing but limited flashy moves. Eric Macksoud is damaged by his refusal to play Cristian's extra vote \u2014 a decision that expired the advantage and left him exposed as a strategic liability in some eyes. Cristian Chavez spent his Shot in the Dark and is now advantage-dry, though still trusted by Carter. Mike Pinsky drops to the bottom of the active rankings: despite his immunity win last episode, he continues to be the tribe's number one target, is the last to learn about plans, and has burned bridges with Maggie, Thien An, and others who openly distrust him."
+  "episode": 9,
+  "commentary": "Episode 9, 'Wilder Than a Cat in a Bathtub,' delivered one of the season's most dramatic Tribal Councils, as the Million Dollar Coin Flip returned and claimed Lewis Kelly \u2014 the season's dominant physical threat \u2014 without a single vote being cast. Carter Krull won his first individual immunity in a grueling upper-body endurance challenge, besting Lewis in the final standoff. With the vote clearly trending toward Lewis as a physical threat, Lewis chose to flip the coin, called fire, and lost, becoming the third jury member and the tenth overall placement. The coin flip carries over its unclaimed prize to Survivor 52, adding an extra layer of consequence to what was already a polarizing twist. Devin's fake idol scheme backfired badly \u2014 Maggie, whom he was trying to trap, ended up aware of the ruse, leaving Devin holding a powerless prop while his target is now better informed than before.\n\nSharonda Cox ascends to the top ranking and by most accounts is playing the best game in the field. She holds the tethered idol inherited from Kristin Flickinger, is trusted by virtually every remaining player, and has quietly accumulated more cross-alliance intelligence than anyone else \u2014 including the knowledge that Carter still has a hidden idol, which Cristian unwisely disclosed to her. Jelly moves to second: her idol is now spent from Episode 8, but her resume of bold moves is building, and Maggie's growing desire to target her as the biggest threat is a warning sign she'll need to navigate carefully. Devin drops slightly to third \u2014 his 'weaponized honesty' game remains compelling and his extra vote is a real asset, but the fake idol blunder and his widely-acknowledged status as a strategic threat make him increasingly difficult to protect.\n\nCarter holds fourth thanks to a timely immunity win and a hidden idol still in his pocket, though Cristian's disclosure of that idol to Sharonda is a ticking time bomb. Maggie climbs to fifth: she is quietly maneuvering, saw through Devin's fake idol plant, and is building a reputation as a sharp strategic thinker without yet becoming a primary target. Cristian falls to sixth after showing a pattern of overplaying \u2014 leaking Carter's idol, bragging about his Shot in the Dark luck, and burning bridges with allies who might remember come jury time. Thien An, Eric, and Mike round out the bottom three: Thien An has game awareness but limited shown agency; Eric is widely disliked and viewed as annoying and untrustworthy; and Mike, described repeatedly as a blabbermouth, faces the most hostility and is likely the next obvious target if he doesn't win immunity."
 }
