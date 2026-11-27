@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-20",
+  "updated": "2026-11-27",
   "source": "Claude API - web search synthesis",
   "players": {
     "Aaliyah Puglia": {
@@ -18,7 +18,7 @@
       "eliminatedWeek": 2
     },
     "Angelica \"Jelly\" Loblack": {
-      "rating": 2,
+      "rating": 3,
       "status": "IN",
       "eliminatedWeek": null
     },
@@ -28,12 +28,12 @@
       "eliminatedWeek": 7
     },
     "Carter Krull": {
-      "rating": 4,
-      "status": "IN",
-      "eliminatedWeek": null
+      "rating": 8,
+      "status": "OUT",
+      "eliminatedWeek": 10
     },
     "Cristian Chavez": {
-      "rating": 6,
+      "rating": 4,
       "status": "IN",
       "eliminatedWeek": null
     },
@@ -43,12 +43,12 @@
       "eliminatedWeek": 8
     },
     "Devin Way": {
-      "rating": 3,
+      "rating": 2,
       "status": "IN",
       "eliminatedWeek": null
     },
     "Eric Macksoud": {
-      "rating": 8,
+      "rating": 7,
       "status": "IN",
       "eliminatedWeek": null
     },
@@ -73,12 +73,12 @@
       "eliminatedWeek": 5
     },
     "Maggie Nestor": {
-      "rating": 5,
-      "status": "IN",
-      "eliminatedWeek": null
+      "rating": 9,
+      "status": "OUT",
+      "eliminatedWeek": 10
     },
     "Mike Pinsky": {
-      "rating": 9,
+      "rating": 5,
       "status": "IN",
       "eliminatedWeek": null
     },
@@ -103,11 +103,11 @@
       "eliminatedWeek": null
     },
     "Thien An Nguyen": {
-      "rating": 7,
+      "rating": 6,
       "status": "IN",
       "eliminatedWeek": null
     }
   },
-  "episode": 9,
-  "commentary": "Episode 9, 'Wilder Than a Cat in a Bathtub,' delivered one of the season's most dramatic Tribal Councils, as the Million Dollar Coin Flip returned and claimed Lewis Kelly \u2014 the season's dominant physical threat \u2014 without a single vote being cast. Carter Krull won his first individual immunity in a grueling upper-body endurance challenge, besting Lewis in the final standoff. With the vote clearly trending toward Lewis as a physical threat, Lewis chose to flip the coin, called fire, and lost, becoming the third jury member and the tenth overall placement. The coin flip carries over its unclaimed prize to Survivor 52, adding an extra layer of consequence to what was already a polarizing twist. Devin's fake idol scheme backfired badly \u2014 Maggie, whom he was trying to trap, ended up aware of the ruse, leaving Devin holding a powerless prop while his target is now better informed than before.\n\nSharonda Cox ascends to the top ranking and by most accounts is playing the best game in the field. She holds the tethered idol inherited from Kristin Flickinger, is trusted by virtually every remaining player, and has quietly accumulated more cross-alliance intelligence than anyone else \u2014 including the knowledge that Carter still has a hidden idol, which Cristian unwisely disclosed to her. Jelly moves to second: her idol is now spent from Episode 8, but her resume of bold moves is building, and Maggie's growing desire to target her as the biggest threat is a warning sign she'll need to navigate carefully. Devin drops slightly to third \u2014 his 'weaponized honesty' game remains compelling and his extra vote is a real asset, but the fake idol blunder and his widely-acknowledged status as a strategic threat make him increasingly difficult to protect.\n\nCarter holds fourth thanks to a timely immunity win and a hidden idol still in his pocket, though Cristian's disclosure of that idol to Sharonda is a ticking time bomb. Maggie climbs to fifth: she is quietly maneuvering, saw through Devin's fake idol plant, and is building a reputation as a sharp strategic thinker without yet becoming a primary target. Cristian falls to sixth after showing a pattern of overplaying \u2014 leaking Carter's idol, bragging about his Shot in the Dark luck, and burning bridges with allies who might remember come jury time. Thien An, Eric, and Mike round out the bottom three: Thien An has game awareness but limited shown agency; Eric is widely disliked and viewed as annoying and untrustworthy; and Mike, described repeatedly as a blabbermouth, faces the most hostility and is likely the next obvious target if he doesn't win immunity."
+  "episode": 10,
+  "commentary": "Episode 10, titled 'Sorting Hogs,' was a double-elimination night that cemented Sharonda Cox as the dominant strategic force in the game. At the first Tribal Council, Sharonda orchestrated a 7-1-1 vote that sent Maggie Nestor \u2014 who had been pressing Devin about his fake idol and was building a threat-eliminating coalition \u2014 to the jury in 9th place. Only Maggie and Thien An were left out of the vote, underscoring Sharonda's remarkable reach across multiple alliances: her secret Helicopter Alliance with Devin and Jelly, her OG Savu bond with Carter and Cristian, and her control over Eric. At the second Tribal Council, Sharonda again outmaneuvered the field, flipping the vote onto Carter despite Carter holding an unplayed hidden immunity idol, eliminating him 5-2-1 and sending him to the jury in 8th place with his idol still in his pocket \u2014 a catastrophic error that Jeff Probst publicly broke down afterward.\n\nSharonda remains the clear top-ranked player entering the final seven. She is the only castaway with a foot in every remaining alliance, jury relationships with virtually every eliminated player, and two consecutive Tribal Councils worth of proof that she can bend the vote to her will without anyone fully understanding her role. Devin Way rises to second: his fake idol gambit survived scrutiny and, with Maggie gone, the heat on him has cooled somewhat, and his core Helicopter Alliance with Sharonda and Jelly remains the strongest trio in the game. Jelly holds third \u2014 her bold earlier moves earn jury respect, and her tight bond with both Devin and Sharonda gives her multiple paths to the end, though her high profile keeps her a target. Cristian jumps to fourth after winning the second immunity challenge in impressive fashion, displaying both physical and social dexterity, though he was left confused about who actually ran the Carter vote, suggesting Sharonda is a step ahead of him.\n\nMike Pinsky slots fifth \u2014 a two-time individual immunity winner this season who is playing both sides but lacks the deeper alliance infrastructure to make a true run at the title. Thien An Nguyen falls to sixth: she was left out of both votes in this episode, her closest ally Maggie is now gone, and while her competitive fire is evident, she is currently isolated and scrambling. Eric Macksoud rounds out the rankings in seventh \u2014 consistently in the middle and hard to read, he has avoided the vote-off spotlight, but his apparent role as Sharonda's instrument rather than an independent operator limits his ceiling and jury narrative heading into the endgame."
 }
